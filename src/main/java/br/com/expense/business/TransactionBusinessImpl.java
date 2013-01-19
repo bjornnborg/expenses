@@ -15,13 +15,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import br.com.expense.model.Category;
+import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
 import br.com.expense.parser.Parser;
+import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.service.DateTimeServiceImpl;
 import br.com.expense.util.FileUtil;
 
@@ -45,36 +44,18 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	public void process(String path) {
 		File file = new File(path);
 		if (file.exists() && file.isDirectory()) {
-			String[] transactionFiles = file.list(new TransactionFileFilter());
-			Map<String, Category> categories = new HashMap<String, Category>(); 
-			if (transactionFiles.length > 0) {
-				//load categorization files
-				String[] categoryFiles = file.list(new CategoriesFileFilter());
-				for (String fileName : categoryFiles) {
-					String fileContent = FileUtil.loadFile(file, fileName);
-					String[] ruleLines = fileContent.split("\n");
-					for (String ruleLine : ruleLines) {
-						String[] categorizationInformation = ruleLine.split("=>");
-						categories.put(categorizationInformation[0].trim(), new Category(categorizationInformation[1].trim()));
-					}
-				}
-			}
 			
+			CategoryRulesEngine rulesEngine = CategoryRulesEngine.fromConfiguration(Configuration.preset());
+			
+			String[] transactionFiles = file.list(new TransactionFileFilter());
 			for (String fileName : transactionFiles) {
 				String fileContent = FileUtil.loadFile(file, fileName);
 				List<Transaction> transactions = new ArrayList<Transaction>();
 				for (Parser parser : parsers) {
 					if (parser.accept(fileContent)) {
 						List<Transaction> parserTransactions = parser.parse(fileContent);
-						outter: for (Transaction transaction : parserTransactions) {
-							for(String regex : categories.keySet()) {
-								Pattern pattern = Pattern.compile(regex);
-								Matcher matcher = pattern.matcher(transaction.getDescription());
-								if (matcher.matches()) {
-									transaction.setCategory(categories.get(regex));
-									continue outter;
-								}
-							}
+						for (Transaction transaction : parserTransactions) {
+							transaction.setCategory(rulesEngine.getCategoryFor(transaction.getDescription()));
 						}
 						if (!parserTransactions.isEmpty()) {
 							transactions.addAll(parserTransactions);
@@ -145,13 +126,5 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		}
 		
 	}
-	
-	private static class CategoriesFileFilter implements FilenameFilter {
 
-		@Override
-		public boolean accept(File dir, String name) {
-			return name.endsWith(".rules");
-		}
-		
-	}	
 }
