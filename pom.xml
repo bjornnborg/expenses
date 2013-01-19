@@ -39,8 +39,8 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>br.com.finance.Finance</mainClass>
-							<packageName>br.com.finance</packageName>
+							<mainClass>br.com.expense.Finance</mainClass>
+							<packageName>br.com.expense</packageName>
 						</manifest>
 						<manifestEntries>
 							<mode>development</mode>
