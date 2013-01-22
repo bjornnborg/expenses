@@ -56,70 +56,73 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 			throw new IllegalArgumentException("Invalid transactions directory");
 		}				
 		
-		if (file.exists() && file.isDirectory()) {
 			
-			CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(), rulesParser);
-			
-			String[] transactionFiles = file.list(new TransactionFileFilter());
-			for (String fileName : transactionFiles) {
-				String fileContent = FileUtil.loadFile(file, fileName);
-				List<Transaction> transactions = new ArrayList<Transaction>();
-				for (Parser parser : parsers) {
-					if (parser.accept(fileContent)) {
-						List<Transaction> parserTransactions = parser.parse(fileContent);
-						for (Transaction transaction : parserTransactions) {
-							transaction.setCategory(rulesEngine.getCategoryFor(transaction.getDescription()));
-						}
-						if (!parserTransactions.isEmpty()) {
-							transactions.addAll(parserTransactions);
-						}
+		CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(), rulesParser);
+		
+		String[] transactionFiles = file.list(new TransactionFileFilter());
+		for (String fileName : transactionFiles) {
+			String fileContent = FileUtil.loadFile(file, fileName);
+			List<Transaction> transactions = new ArrayList<Transaction>();
+			boolean contentAlreadyParsed = false;
+			for (Parser parser : parsers) {
+				if (parser.accept(fileContent)) {
+					if (contentAlreadyParsed) {
+						throw new IllegalArgumentException("More then 1 parser for content:\r\n" + fileContent);
+					}
+					contentAlreadyParsed = true;
+					List<Transaction> parserTransactions = parser.parse(fileContent);
+					for (Transaction transaction : parserTransactions) {
+						transaction.setCategory(rulesEngine.getCategoryFor(transaction.getDescription()));
+					}
+					if (!parserTransactions.isEmpty()) {
+						transactions.addAll(parserTransactions);
 					}
 				}
-				
-				Collections.sort(transactions);
-				Map<String, BigDecimal> costsByCategory = new HashMap<String, BigDecimal>();
-				
-				StringBuilder expensesOutput = new StringBuilder();
-				StringBuilder expensesByCategory = new StringBuilder();
-				if (!transactions.isEmpty()) {
-					for (Transaction transaction : transactions) {
-						// write file
-						String line = DATE_FORMAT.format(transaction.getDate()) + ";" + transaction.getDescription() + ";" + transaction.getType() + ";" + NUMBER_FORMAT.format(transaction.getCurrencyInfo().getTotalValue());
-						if (transaction.getCategory() != null) {
-							line += ";" + transaction.getCategory().getName();
-						}
-						expensesOutput.append(line + "\r\n");
-						
-						String category = transaction.getCategory() != null ? transaction.getCategory().getName() : "unspecified";
-						// just in case we have same category name for debit or credit
-						category += "^" + transaction.getType();
-						
-						BigDecimal categorySum = costsByCategory.get(category);
-						if (categorySum == null) {
-							categorySum = new BigDecimal(0);
-						}
-						costsByCategory.put(category, categorySum.add(transaction.getCurrencyInfo().getTotalValue()));
-						
+			}
+			
+			Collections.sort(transactions);
+			Map<String, BigDecimal> costsByCategory = new HashMap<String, BigDecimal>();
+			
+			StringBuilder expensesOutput = new StringBuilder();
+			StringBuilder expensesByCategory = new StringBuilder();
+			if (!transactions.isEmpty()) {
+				for (Transaction transaction : transactions) {
+					// write file
+					String line = DATE_FORMAT.format(transaction.getDate()) + ";" + transaction.getDescription() + ";" + transaction.getType() + ";" + NUMBER_FORMAT.format(transaction.getCurrencyInfo().getTotalValue());
+					if (transaction.getCategory() != null) {
+						line += ";" + transaction.getCategory().getName();
 					}
+					expensesOutput.append(line + "\r\n");
 					
-					for (String category : costsByCategory.keySet()) {
-						expensesByCategory.append(category.split("\\^")[0] + ";" + NUMBER_FORMAT.format(costsByCategory.get(category)) + "\r\n");
+					String category = transaction.getCategory() != null ? transaction.getCategory().getName() : "unspecified";
+					// just in case we have same category name for debit or credit
+					category += "^" + transaction.getType();
+					
+					BigDecimal categorySum = costsByCategory.get(category);
+					if (categorySum == null) {
+						categorySum = new BigDecimal(0);
 					}
+					costsByCategory.put(category, categorySum.add(transaction.getCurrencyInfo().getTotalValue()));
+					
 				}
 				
-				BufferedWriter bw = null;
-				try {
-					 bw = new BufferedWriter(new FileWriter("expenses-report.csv"));
-					 bw.write(expensesByCategory.toString() + "\r\n\r\n" + expensesOutput.toString()+"\r\n");
-					 bw.write("=soma(d1:d50)");
-					 bw.close();
-				} catch (IOException e) {
-					if (bw != null) {
-						try {
-							bw.close();
-						} catch (IOException e1) {
-							e1.printStackTrace();
-						}
+				for (String category : costsByCategory.keySet()) {
+					expensesByCategory.append(category.split("\\^")[0] + ";" + NUMBER_FORMAT.format(costsByCategory.get(category)) + "\r\n");
+				}
+			}
+			
+			BufferedWriter bw = null;
+			try {
+				 bw = new BufferedWriter(new FileWriter("expenses-report.csv"));
+				 bw.write(expensesByCategory.toString() + "\r\n\r\n" + expensesOutput.toString()+"\r\n");
+				 bw.write("=soma(d1:d50)");
+				 bw.close();
+			} catch (IOException e) {
+				if (bw != null) {
+					try {
+						bw.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
 				}
 			}
