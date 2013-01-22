@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.expense.model.Transaction;
 
-public interface Parser {
+public interface TransactionParser {
 
 	List<Transaction> parse(String text);
 	boolean accept(String text);

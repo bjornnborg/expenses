@@ -1,5 +1,8 @@
 package br.com.expense.parser;
 
+import static br.com.expense.model.Currency.DOLLAR;
+import static br.com.expense.model.Currency.REAL;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,10 +19,8 @@ import br.com.expense.model.Transaction;
 import br.com.expense.model.TransactionType;
 import br.com.expense.service.DateTimeService;
 import br.com.expense.util.DateTimeUtil;
-import static br.com.expense.model.Currency.DOLLAR;
-import static br.com.expense.model.Currency.REAL;
 
-public class CartaoPersonnaliteParser implements Parser {
+public class CartaoPersonnaliteParser implements TransactionParser {
 	
 	private static Pattern BREADCRUMB = Pattern.compile("Home.+Fatura.+Consultar");
 	private static Pattern CARD_NUMBER = Pattern.compile("Meu.+final.+");

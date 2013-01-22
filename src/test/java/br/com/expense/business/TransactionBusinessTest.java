@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.junit.Test;
 
+import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
-import br.com.expense.parser.Parser;
+import br.com.expense.parser.TransactionParser;
+import br.com.expense.parser.TransactionParserEngine;
+import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.service.DateTimeServiceImpl;
 
@@ -15,27 +18,29 @@ public class TransactionBusinessTest {
 
 	@Test
 	public void generateReport() {
-		TransactionBusiness business = new TransactionBusinessImpl();
+		List<TransactionParser> parsers = new ArrayList<TransactionParser>();
+		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
+		TransactionBusiness business = new TransactionBusinessImpl(new TransactionParserEngine(Configuration.preset(), parsers, new CategoryRulesEngine(Configuration.preset("src/test/resources/"), new CategoryRulesParser())));
 		business.process("src/test/resources/");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void shoulBreakIfDirectoryPathDoesNotExists() {
-		TransactionBusiness business = new TransactionBusinessImpl();
+		TransactionBusiness business = new TransactionBusinessImpl(Configuration.preset());
 		business.process("j:/test");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void shoulBreakIfIsNotDirectory() {
-		TransactionBusiness business = new TransactionBusinessImpl();
+		TransactionBusiness business = new TransactionBusinessImpl(Configuration.preset());
 		business.process("src/test/resources/itau-personnalite-visa.txt");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void onlyOneParserShouldAccept() {
-		List<Parser> parsers = new ArrayList<Parser>();
-		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
-		parsers.add(new Parser() {
+		List<TransactionParser> transactionParsers = new ArrayList<TransactionParser>();
+		transactionParsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
+		transactionParsers.add(new TransactionParser() {
 			
 			@Override
 			public List<Transaction> parse(String text) {
@@ -48,7 +53,7 @@ public class TransactionBusinessTest {
 			}
 		});
 		
-		TransactionBusiness business = new TransactionBusinessImpl(parsers, new CategoryRulesParser());
+		TransactionBusiness business = new TransactionBusinessImpl(new TransactionParserEngine(Configuration.preset(), transactionParsers, new CategoryRulesEngine(Configuration.preset(), new CategoryRulesParser())));
 		business.process("src/test/resources/");
 	}	
 	
