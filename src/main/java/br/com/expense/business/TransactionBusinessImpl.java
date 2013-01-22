@@ -47,6 +47,11 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	@Override
 	public void process(String path) {
 		File file = new File(path);
+		
+		if (!file.exists()) {
+			throw new IllegalArgumentException("Target directory does not exists");
+		}
+		
 		if (file.exists() && file.isDirectory()) {
 			
 			CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(), rulesParser);
