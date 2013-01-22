@@ -16,7 +16,7 @@ public class CategoryRulesEngineTest extends BaseParserTest{
 	
 	@Test
 	public void categorize() throws FileNotFoundException {
-		CategoryRulesEngine rulesEngine = CategoryRulesEngine.fromConfiguration(Configuration.preset(getPath(".")));
+		CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(getPath(".")), new CategoryRulesParser());
 		Transaction transaction = new Transaction();
 		transaction.setDescription("PAO DE ACUCAR");
 		Category category = rulesEngine.getCategoryFor(transaction.getDescription());

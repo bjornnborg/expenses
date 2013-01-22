@@ -21,6 +21,7 @@ import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
 import br.com.expense.parser.Parser;
 import br.com.expense.parser.rules.CategoryRulesEngine;
+import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.service.DateTimeServiceImpl;
 import br.com.expense.util.FileUtil;
 
@@ -30,12 +31,15 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	private static final NumberFormat NUMBER_FORMAT = new DecimalFormat("###,###,##0.00");
 
 	private List<Parser> parsers = new ArrayList<Parser>();
+	private CategoryRulesParser rulesParser;
 	
-	public TransactionBusinessImpl(List<Parser> parsers) {
+	public TransactionBusinessImpl(List<Parser> parsers, CategoryRulesParser rulesParser) {
 		this.parsers = parsers;
+		this.rulesParser = rulesParser;
 	}
-	
+
 	public TransactionBusinessImpl() {
+		this.rulesParser = new CategoryRulesParser();
 		this.parsers = new ArrayList<Parser>();
 		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
 	}	
@@ -45,7 +49,7 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		File file = new File(path);
 		if (file.exists() && file.isDirectory()) {
 			
-			CategoryRulesEngine rulesEngine = CategoryRulesEngine.fromConfiguration(Configuration.preset());
+			CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(), rulesParser);
 			
 			String[] transactionFiles = file.list(new TransactionFileFilter());
 			for (String fileName : transactionFiles) {
