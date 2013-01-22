@@ -52,6 +52,10 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 			throw new IllegalArgumentException("Target directory does not exists");
 		}
 		
+		if (!file.isDirectory()) {
+			throw new IllegalArgumentException("Invalid transactions directory");
+		}				
+		
 		if (file.exists() && file.isDirectory()) {
 			
 			CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(), rulesParser);

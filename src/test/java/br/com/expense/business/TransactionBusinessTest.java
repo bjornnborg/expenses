@@ -14,9 +14,15 @@ public class TransactionBusinessTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void shoulBreakIfDirectoryDoesNotExists() {
+	public void shoulBreakIfDirectoryPathDoesNotExists() {
 		TransactionBusiness business = new TransactionBusinessImpl();
 		business.process("j:/test");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void shoulBreakIfIsNotDirectory() {
+		TransactionBusiness business = new TransactionBusinessImpl();
+		business.process("src/test/resources/itau-personnalite-visa.txt");
 	}
 	
 }
