@@ -41,6 +41,7 @@ public class TransactionRecordReportTest {
 		String reportContent = report.getContent();
 		assertNotNull(reportContent);
 		assertTrue("transactions must be in ascending date order", reportContent.startsWith("12/01/2013"));
+		assertTrue(reportContent.startsWith("12/01/2013;Another transaction;-43.18;Another category"));
 		
 	}
 
