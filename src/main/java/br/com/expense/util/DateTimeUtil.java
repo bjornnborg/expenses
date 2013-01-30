@@ -18,5 +18,13 @@ public class DateTimeUtil {
 	
 	public static Date parse(String date) {
 		return parse(date, "dd/MM/yyyy");
+	}
+	
+	public static String format(Date date) {
+		return format(date, "dd/MM/yyyy");
+	}
+	
+	public static String format(Date date, String pattern) {
+		return new SimpleDateFormat(pattern).format(date);
 	}	
 }
