@@ -1,6 +1,8 @@
 package br.com.expense.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import static br.com.expense.model.TransactionType.DEBIT;
 
 public class Transaction implements Comparable<Transaction> {
 	
@@ -12,6 +14,19 @@ public class Transaction implements Comparable<Transaction> {
 
 	public Date getDate() {
 		return date;
+	}
+	
+	public BigDecimal getValue() {
+		BigDecimal value = null;
+		if (this.currencyInfo != null) {
+			value = currencyInfo.getTotalValue();
+		}
+		
+		if (DEBIT == type) {
+			value = value.multiply(new BigDecimal("-1"));
+		}
+		
+		return value;
 	}
 
 	public void setDate(Date date) {
