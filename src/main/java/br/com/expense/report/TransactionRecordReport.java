@@ -27,7 +27,7 @@ public class TransactionRecordReport {
 		String line = 
 				DateTimeUtil.format(transaction.getDate()) + ";" +
 				transaction.getDescription() + ";" + 
-				transaction.getCurrencyInfo().getTotalValue() + ";";
+				transaction.getValue() + ";";
 		
 		if (transaction.getCategory() != null) {
 			line += transaction.getCategory().getName();
