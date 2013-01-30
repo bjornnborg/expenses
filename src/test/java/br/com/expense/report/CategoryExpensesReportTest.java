@@ -1,8 +1,10 @@
 package br.com.expense.report;
 
+import static br.com.expense.model.TransactionType.CREDIT;
 import static br.com.expense.model.TransactionType.DEBIT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -37,5 +39,25 @@ public class CategoryExpensesReportTest {
 		assertNotNull(reportContent);
 		assertEquals("Clothes;-68.18", reportContent);
 	}
+	
+	@Test
+	public void mustTellUnspeciedDebitTransactionsFromUnspecifiedCreditTransactions() {
+		List<Transaction> transactions = new ArrayList<Transaction>();
+		Transaction t1 = new Transaction();
+		t1.setType(DEBIT);
+		t1.setCurrencyInfo(new CurrencyInfo(new BigDecimal("25"), Currency.REAL, new BigDecimal("1")));
+		transactions.add(t1);
+		
+		Transaction t2 = new Transaction();
+		t2.setType(CREDIT);
+		t2.setCurrencyInfo(new CurrencyInfo(new BigDecimal("43.18"), Currency.REAL, new BigDecimal("1")));
+		transactions.add(t2);
+		
+		CategoryExpensesReport report = new CategoryExpensesReport(transactions);
+		String reportContent = report.getContent();
+		assertNotNull(reportContent);
+		assertTrue(reportContent.startsWith("unspecified;-25.00"));
+		assertTrue(reportContent.endsWith("unspecified;43.18"));
+	}	
 	
 }
