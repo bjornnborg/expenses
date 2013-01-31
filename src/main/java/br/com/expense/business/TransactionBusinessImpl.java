@@ -15,6 +15,7 @@ import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.report.CategoryExpensesReport;
 import br.com.expense.report.TransactionRecordReport;
+import br.com.expense.util.FileUtil;
 
 public class TransactionBusinessImpl implements TransactionBusiness {
 	
@@ -30,17 +31,17 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 
 	@Override
 	public void process(String path) {
-		File file = new File(path);
+		File basePath = new File(path);
 		
-		if (!file.exists()) {
+		if (!basePath.exists()) {
 			throw new IllegalArgumentException("Path does not exists");
 		}
 		
-		if (!file.isDirectory()) {
+		if (!basePath.isDirectory()) {
 			throw new IllegalArgumentException("Path is not a directory");
 		}
 		
-		List<Transaction> transactions = this.parserEngine.getTransactions(file);
+		List<Transaction> transactions = this.parserEngine.getTransactions(basePath);
 		
 		StringBuilder reportContent = new StringBuilder();
 		
@@ -53,20 +54,6 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		TransactionRecordReport transactionRecords = new TransactionRecordReport(transactions);
 		reportContent.append(transactionRecords.getContent());
 		
-			
-		BufferedWriter bw = null;
-		try {
-			 bw = new BufferedWriter(new FileWriter("expenses-report.csv"));
-			 bw.write(reportContent.toString());
-			 bw.close();
-		} catch (IOException e) {
-			if (bw != null) {
-				try {
-					bw.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		}
+		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), reportContent.toString());
 	}
 }

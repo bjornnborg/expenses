@@ -1,8 +1,11 @@
 package br.com.expense.util;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FileUtil {
@@ -36,5 +39,22 @@ public class FileUtil {
 			content.append(loadFile(new File(baseDir, file).getPath()));
 		}
 		return content.toString();
-	}	
+	}
+	
+	public static void writeFile(File file, String content) {
+		BufferedWriter bw = null;
+		try {
+			 bw = new BufferedWriter(new FileWriter(file));
+			 bw.write(content);
+			 bw.close();
+		} catch (IOException e) {
+			if (bw != null) {
+				try {
+					bw.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}		
+	}
 }
