@@ -1,5 +1,8 @@
 package br.com.expense.business;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class TransactionBusinessTest {
 		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
 		TransactionBusiness business = new TransactionBusinessImpl(new TransactionParserEngine(Configuration.preset(), parsers, new CategoryRulesEngine(Configuration.preset("src/test/resources/"), new CategoryRulesParser())));
 		business.process("src/test/resources/");
+		assertTrue(new File("src/test/resources/expenses-report.csv").exists());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
