@@ -24,13 +24,14 @@ public class ContaCorrenteItauParser implements TransactionParser {
 	private static Pattern HEADER = Pattern.compile("Ag.ncia.+|\\s+Conta\\sCorrente.+|.+Investimentos");
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+site^");
 	
-	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+)(Data.+?)(Posi.+)", Pattern.DOTALL);
-	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2})\\s+(D|C)?(.+?\\s+)((\\d{1,3}\\.?)+,(\\d{2}))(.*)", Pattern.MULTILINE);
+	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(Posi.+)", Pattern.DOTALL);
+	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2})\\s+(D\\s|C\\s)?(.+?\\s+)((\\d{1,3}\\.?)+,(\\d{2}))(.*)", Pattern.MULTILINE);
 	private static final Set<String> BALANCE_ENTRIES = new HashSet<String>();
 	
 	static {
 		BALANCE_ENTRIES.add("SALDO ANTERIOR");
 		BALANCE_ENTRIES.add("S A L D O");
+		BALANCE_ENTRIES.add("SDO CTA/APL AUTOMATICAS");
 	}
 	
 	

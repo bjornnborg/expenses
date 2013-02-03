@@ -25,12 +25,14 @@ public class ContaCorrenteItauParserTest extends BaseParserTest {
 		String snippet = 
 				" Data	 	 	Lan�amento	 	Valor (R$)	 	Saldo (R$)\r\n" +
 				"10/01	D	 	INT PAG TIT BANCO 033	4175	275,00	-\r\n" +
+				"28/01			DXE 001842 SAQUE	7619	50,00	-\r\n" +
 				"Posi��o da Conta Corrente";
 		List<Transaction> transactions = new ContaCorrenteItauParser(new DateTimeServiceImpl()).parse(snippet);
 		assertNotNull(transactions);
-		assertEquals(1, transactions.size());
+		assertEquals(2, transactions.size());
 		assertFalse(transactions.get(0).getDescription().startsWith("D"));
 		assertTrue(transactions.get(0).getDescription().startsWith("INT PAG"));
+		assertTrue("Wrong indentification of non-confirmed transaction",transactions.get(1).getDescription().startsWith("DXE"));
 	}
 	
 	@Test
@@ -38,12 +40,14 @@ public class ContaCorrenteItauParserTest extends BaseParserTest {
 		String snippet = 
 				" Data	 	 	Lan�amento	 	Valor (R$)	 	Saldo (R$)\r\n" +
 				"10/01	C	 	INT PAG TIT BANCO 033	4175	275,00\r\n" +
+				"28/01			CXE 001842 SAQUE	7619	50,00	-\r\n" +
 				"Posi��o da Conta Corrente";
 		List<Transaction> transactions = new ContaCorrenteItauParser(new DateTimeServiceImpl()).parse(snippet);
 		assertNotNull(transactions);
-		assertEquals(1, transactions.size());
+		assertEquals(2, transactions.size());
 		assertFalse(transactions.get(0).getDescription().startsWith("C"));
 		assertTrue(transactions.get(0).getDescription().startsWith("INT PAG"));
+		assertTrue("Wrong indentification of non-confirmed transaction", transactions.get(1).getDescription().startsWith("CXE"));
 	}
 	
 	@Test
@@ -60,11 +64,19 @@ public class ContaCorrenteItauParserTest extends BaseParserTest {
 	}
 	
 	@Test
-	public void parseTransactions() throws FileNotFoundException {
+	public void parseItauPjTransactions() throws FileNotFoundException {
 		List<Transaction> transactions = new ContaCorrenteItauParser(new DateTimeServiceImpl()).parse(this.loadFile("itau-pj.txt"));
 		assertNotNull(transactions);
 		assertFalse(transactions.isEmpty());
 		assertEquals(11, transactions.size());
+	}
+	
+	@Test
+	public void parseItauPfPersonnaliteTransactions() throws FileNotFoundException {
+		List<Transaction> transactions = new ContaCorrenteItauParser(new DateTimeServiceImpl()).parse(this.loadFile("itau-pf-personnalite.txt"));
+		assertNotNull(transactions);
+		assertFalse(transactions.isEmpty());
+		assertEquals(12, transactions.size());
 	}	
 	
 }
