@@ -20,6 +20,14 @@ public class TransactionTest {
 	}
 	
 	@Test
+	public void shouldNotInvertSignForDebitTransactionIfAlreadyNegative() {
+		Transaction transaction = new Transaction();
+		transaction.setType(DEBIT);
+		transaction.setCurrencyInfo(new CurrencyInfo(new BigDecimal("-10"), REAL, new BigDecimal("1")));
+		assertEquals(new BigDecimal("-10.00"), transaction.getValue());
+	}	
+	
+	@Test
 	public void mustNotReturnNegativeValueForCreditTransactions() {
 		Transaction transaction = new Transaction();
 		transaction.setType(CREDIT);

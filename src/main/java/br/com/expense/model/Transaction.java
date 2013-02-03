@@ -1,8 +1,10 @@
 package br.com.expense.model;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
 import static br.com.expense.model.TransactionType.DEBIT;
+import static java.math.BigDecimal.ZERO;
 
 public class Transaction implements Comparable<Transaction> {
 	
@@ -22,7 +24,7 @@ public class Transaction implements Comparable<Transaction> {
 			value = currencyInfo.getTotalValue();
 		}
 		
-		if (DEBIT == type) {
+		if (DEBIT == type && value.compareTo(ZERO) > 0) {
 			value = value.multiply(new BigDecimal("-1"));
 		}
 		
