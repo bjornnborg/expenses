@@ -106,5 +106,10 @@ public class ContaCorrenteItauParser implements TransactionParser {
 	private boolean hasFooter(String text) {
 		return FOOTER.matcher(text).find();
 	}
+
+	@Override
+	public String getName() {
+		return "Itaú accounts parser";
+	}
 	
 }

@@ -8,4 +8,5 @@ public interface TransactionParser {
 
 	List<Transaction> parse(String text);
 	boolean accept(String text);
+	String getName();
 }

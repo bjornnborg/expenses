@@ -183,6 +183,11 @@ public class CartaoPersonnaliteParser implements TransactionParser {
 	
 	private boolean hasCardFooter(String text) {
 		return FOOTER.matcher(text).find();
+	}
+
+	@Override
+	public String getName() {
+		return "Cartão personnalité parser";
 	}	
 
 }

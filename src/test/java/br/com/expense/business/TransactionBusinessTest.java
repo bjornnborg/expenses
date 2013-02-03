@@ -55,6 +55,11 @@ public class TransactionBusinessTest {
 			public boolean accept(String text) {
 				return true;
 			}
+
+			@Override
+			public String getName() {
+				return "annonymous";
+			}
 		});
 		
 		TransactionBusiness business = new TransactionBusinessImpl(new TransactionParserEngine(Configuration.preset(), transactionParsers, new CategoryRulesEngine(Configuration.preset(), new CategoryRulesParser())));
