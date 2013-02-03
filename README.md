@@ -19,4 +19,6 @@ Each entry must contain a valid regex to match the transaction description and a
 
 ## Supported transactions sources
 
-- Itau Personnalité credit cards
+- Itaú Personnalité credit cards
+- Itaú Personnalité PF accounts
+- Itaú PJ accounts
