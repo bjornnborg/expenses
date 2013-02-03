@@ -1,0 +1,68 @@
+ Ag�ncia: 0000Conta: 00000-0ACME COMPANY DO BRASIL LTDA Acessar outras contas 
+Home | Conta Corrente | Cobran�a | Pagamentos | Receb�veis | Transfer�ncia, DOC e TED | Cr�dito | Investimentos
+
+Neg�cios Internacionais | Derivativos | Cart�es | Outros Servi�os | Copa 
+Home > ver extrato
+
+ 	 	 	 	 	 	 	 	 
+ Saldo resumido  - 31/01/2013 �s 11:43:32h
+ DISPONIVEL P/ SAQUE	28,50	 	 
+ LIMITE (SUJ. A ENCARGOS)	10.000,00	 	 
+ TOTAL P/ SAQUE	10.028,50	 	
+ 
+ 
+Extrato - �ltimos 30 dias	
+Outros per�odos:
+
+ 
+Data	 	 	Lan�amento	 	Valor (R$)	 	Saldo (R$)	 
+20/12	 	 	SALDO ANTERIOR	 	 	 	1.826,33	 
+02/01	 	 	TBI 0000.00000-5Contas	4175	350,00	-	 	 
+02/01	 	 	S A L D O	 	 	 	1.476,33	 
+03/01	 	 	TAR MAXCTA PJ MENS 12/12	 	25,00	-	 	 
+03/01	 	 	S A L D O	 	 	 	5.451,33	 
+04/01	 	 	INT TED 63663413Salari	 	1.451,33	-	 	 
+04/01	 	 	TAR TED INT 636634	 	7,40	-	 	 
+04/01	 	 	SISPAG AMIL ASSISTENCIA	262	2.110,88	 	 	 
+04/01	 	 	S A L D O	 	 	 	2.103,48	 
+08/01	 	 	TBI 3795.29795-5Contas	4175	1.000,00	-	 	 
+08/01	 	 	S A L D O	 	 	 	1.103,48	 
+10/01	 	 	TBI 0000.00000-5TESTE	4175	1.100,00	-	 	 
+10/01	 	 	TBI 0000.00000-5TESTE	4175	1.500,00	-	 	 
+10/01	D	 	INT PAG TIT BANCO 033	4175	275,00	-	 	 
+10/01	 	 	S A L D O	 	 	 	1.228,48	 
+14/01	 	 	TBI 0000.00000-0Cartao	4175	1.200,00	-	 	 
+14/01	 	 	INT DAS 1300401213683	4175	999,98	-	 	 
+14/01	 	 	S A L D O	 	 	 	28,50	 
+ 
+Posi��o da Conta Corrente
+  Descri��o	Valor (R$)  
+(+) SALDO PROVISORIO CONTA	28,50	 
+(=) SALDO DISPONIVEL PARA SAQUE	28,50	 
+(+) LIMITE (SUJ. A ENCARGOS)	10.000,00	 
+(=) VALOR TOTAL DISPONIVEL PARA SAQUE	10.028,50	 
+ 
+SDO DISP P/ APLIC HOJE	28,50	 
+TAXA (30 DIAS) 3,800 % PRE / TAXA ANUAL 56,44 %
+CET MENSAL 4,30 % / CET ANUAL 66,90 %
+ 
+ 	 	 	 	 	 	 	 	 
+ 
+
+- Os saldos acima s�o baseados nas informa��es dispon�veis at� esse instante e poder�o ser alterados a qualquer momento em fun��o de novos lan�amentos.
+
+	Voc� sabia que esta transa��o est� dispon�vel no celular?
+Saiba como realizar consultas,autoriza��es de pagamentos e muito mais, diretamente de seu celular. Basta acessar pelo celular:
+www.itau.com.br/empresa. Se preferir, receba gratuitamente um SMS com este endere�o.
+Op��es
+Vers�o para Impress�o  
+Gerar arquivo em Excel
+Gerar arquivos em outros formatos
+Ir para
+Cheques emitidos e compensados
+Visualiza��o da imagem do cheque
+Posi��o consolidada da minha conta
+Posi��o consolidada dos meus limites de cr�dito
+Comprovantes
+Consulta as legendas do extrato de conta corrente
+Ita� Unibanco S.A.     |     Atendimento     |     Seguran�a     |     Mapa do site
