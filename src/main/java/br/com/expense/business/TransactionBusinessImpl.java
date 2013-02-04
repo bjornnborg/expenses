@@ -6,12 +6,14 @@ import java.util.List;
 
 import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
+import br.com.expense.parser.CartaoPersonnaliteParser;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
 import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.report.CategoryExpensesReport;
 import br.com.expense.report.TransactionRecordReport;
+import br.com.expense.service.DateTimeServiceImpl;
 import br.com.expense.util.FileUtil;
 
 public class TransactionBusinessImpl implements TransactionBusiness {
@@ -23,8 +25,14 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	}
 
 	public TransactionBusinessImpl(Configuration configuration) {
-		this.parserEngine = new TransactionParserEngine(configuration, new ArrayList<TransactionParser>(), new CategoryRulesEngine(Configuration.preset(), new CategoryRulesParser()));
-	}	
+		this.parserEngine = new TransactionParserEngine(configuration, getDefaultParsers(), new CategoryRulesEngine(Configuration.preset(), new CategoryRulesParser()));
+	}
+	
+	private List<TransactionParser> getDefaultParsers() {
+		List<TransactionParser> parsers = new ArrayList<TransactionParser>();
+		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
+		return parsers;
+	}
 
 	@Override
 	public void process(String path) {
