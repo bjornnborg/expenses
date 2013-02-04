@@ -32,6 +32,7 @@ public class TransactionParserEngine {
 			boolean contentAlreadyParsed = false;
 			for (TransactionParser parser : transactionParsers) {
 				if (parser.accept(fileContent)) {
+					System.out.println(">> File accepted by " + parser.getName());
 					if (contentAlreadyParsed) {
 						throw new IllegalArgumentException("More then 1 parser for content:\r\n" + fileContent);
 					}
@@ -69,7 +70,7 @@ public class TransactionParserEngine {
 		public boolean accept(File dir, String name) {
 			boolean accept = name.endsWith(extension);
 			if (accept) {
-				System.out.println(">> Accepting " + name);
+				System.out.println(">> Filtering " + name);
 			}
 			return accept;
 		}
