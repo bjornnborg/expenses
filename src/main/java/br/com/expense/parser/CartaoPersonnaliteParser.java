@@ -156,10 +156,10 @@ public class CartaoPersonnaliteParser implements TransactionParser {
 	
 	private int getCorrectYear(String dayAndMonth) {
 		int currentYear = dateTimeService.now().get(Calendar.YEAR);
-		int currentMonth = dateTimeService.now().get(Calendar.MONTH);
+		int currentMonthHumanReadable = dateTimeService.now().get(Calendar.MONTH) + 1;
 		int correctYear = currentYear;
 		String month = dayAndMonth.split("/")[1];
-		if (Integer.valueOf(month) > currentMonth) {
+		if (Integer.valueOf(month) > currentMonthHumanReadable) {
 			correctYear = --currentYear;
 		}
 		return correctYear;

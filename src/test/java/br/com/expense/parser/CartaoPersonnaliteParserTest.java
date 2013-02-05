@@ -68,6 +68,37 @@ public class CartaoPersonnaliteParserTest extends BaseParserTest {
 	}
 	
 	@Test
+	public void detectCurrentYearWhenTransactionMonthEqualsCurrentMonth() {
+		DateTimeService dateTimeService = new DateTimeService() {
+			
+			@Override
+			public Date today() {
+				return DateTimeUtil.parse("04/02/2013");
+			}
+			
+			@Override
+			public Calendar now() {
+				Calendar now = Calendar.getInstance();
+				now.setTime(this.today());
+				return now;
+			}
+		};
+		
+		String snippet = 
+				"Lançamentos nacionais\r\n" + 
+				"01/02	PAO DE ACUCAR 1221	12,00\r\n\r\n"; 
+				
+		
+		List<Transaction> transactions = new CartaoPersonnaliteParser(dateTimeService).parse(snippet);
+		assertNotNull(transactions);
+		assertFalse(transactions.isEmpty());
+		assertEquals(1, transactions.size());
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(transactions.get(0).getDate());
+		assertEquals(2013, calendar.get(Calendar.YEAR));
+	}	
+	
+	@Test
 	public void mustConvertDollarTransactionsToReais() throws FileNotFoundException {
 		List<Transaction> transactions = new CartaoPersonnaliteParser(new DateTimeServiceImpl()).parse(this.loadFile("itau-personnalite-visa.txt"));
 		assertNotNull(transactions);
