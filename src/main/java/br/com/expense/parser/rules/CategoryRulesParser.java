@@ -20,7 +20,8 @@ public class CategoryRulesParser {
 				String regexRule = categorizationInformation[0].trim();
 				Category category = null;
 				if (categorizationInformation.length == 2) {
-					category = new Category(categorizationInformation[1].trim());
+					String[] categoryNameAndComments = categorizationInformation[1].split("--");
+					category = new Category(categoryNameAndComments[0].trim());
 				} else {
 					System.out.println(">> No category for rule " + regexRule + ". Did you use '=>' ?");
 				}

@@ -36,5 +36,14 @@ public class CategoryRulesParserTest {
 		assertEquals(1, categoriesByRegex.keySet().size());
 		assertEquals(null, categoriesByRegex.get(".*PAO DE ACUCAR.*"));
 	}
+	
+	@Test
+	public void shouldAllowInlineRuleComments() {
+		String rulesLines = ".*PAO DE ACUCAR.* => supermercado -- comments";
+		Map<String, Category> categoriesByRegex = new CategoryRulesParser().processRules(rulesLines);
+		assertNotNull(categoriesByRegex);
+		assertEquals(1, categoriesByRegex.keySet().size());
+		assertEquals("supermercado", categoriesByRegex.get(".*PAO DE ACUCAR.*").getName());
+	}	
 
 }
