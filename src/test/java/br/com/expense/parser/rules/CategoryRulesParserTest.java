@@ -27,5 +27,14 @@ public class CategoryRulesParserTest {
 		assertEquals(3, rules.keySet().size());
 		assertTrue(rules.keySet().contains(".*PAO DE ACUCAR.*"));
 	}
+	
+	@Test
+	public void shouldUseNoCategoryWithInvalidCategoryToken() {
+		String rulesLines = ".*PAO DE ACUCAR.* = > supermercado";
+		Map<String, Category> categoriesByRegex = new CategoryRulesParser().processRules(rulesLines);
+		assertNotNull(categoriesByRegex);
+		assertEquals(1, categoriesByRegex.keySet().size());
+		assertEquals(null, categoriesByRegex.get(".*PAO DE ACUCAR.*"));
+	}
 
 }

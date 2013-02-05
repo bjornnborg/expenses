@@ -17,7 +17,14 @@ public class CategoryRulesParser {
 			String line = scanner.nextLine();
 			if (valid(line)) {
 				String[] categorizationInformation = line.split("=>");
-				categories.put(categorizationInformation[0].trim(), new Category(categorizationInformation[1].trim()));			
+				String regexRule = categorizationInformation[0].trim();
+				Category category = null;
+				if (categorizationInformation.length == 2) {
+					category = new Category(categorizationInformation[1].trim());
+				} else {
+					System.out.println(">> No category for rule " + regexRule + ". Did you use '=>' ?");
+				}
+				categories.put(regexRule, category);			
 			}
 		}
 
