@@ -57,11 +57,11 @@ public class CategoryExpensesHelper {
 			this.expensesByCategory = expensesByCategory;
 		}
 
-		public BigDecimal getTotalDebitsAmountFor(Category category) {
+		public BigDecimal getTotalDebitAmountFor(Category category) {
 			return this.expensesByCategory.get(DEBIT).get(category);
 		}
 		
-		public BigDecimal getTotalCreditsAmountFor(Category category) {
+		public BigDecimal getTotalCreditAmountFor(Category category) {
 			return this.expensesByCategory.get(CREDIT).get(category);
 		}
 		

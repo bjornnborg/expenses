@@ -39,8 +39,32 @@ public class CategoryExpensesHelperTest {
 		assertNotNull(expensesByCategory);
 		assertFalse(expensesByCategory.isEmpty());
 		assertEquals(1, expensesByCategory.getDebitCount());
-		assertEquals(new BigDecimal("-37.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("Clothes")));
+		assertEquals(new BigDecimal("-37.00"), expensesByCategory.getTotalDebitAmountFor(new Category("Clothes")));
 	}
+	
+	@Test
+	public void mustConsiderTransactionTypeWhenGrouping() {
+		List<Transaction> transactions = new ArrayList<Transaction>();
+		Transaction t1 = new Transaction();
+		t1.setType(DEBIT);
+		t1.setCurrencyInfo(new CurrencyInfo(new BigDecimal("25"), Currency.REAL, new BigDecimal("1")));
+		t1.setCategory(new Category("Clothes"));
+		transactions.add(t1);
+		
+		Transaction t2 = new Transaction();
+		t2.setType(CREDIT);
+		t2.setCurrencyInfo(new CurrencyInfo(new BigDecimal("12"), Currency.REAL, new BigDecimal("1")));
+		t2.setCategory(new Category("Clothes"));
+		transactions.add(t2);
+		
+		CategoryExpenses expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
+		assertNotNull(expensesByCategory);
+		assertFalse(expensesByCategory.isEmpty());
+		assertEquals(1, expensesByCategory.getDebitCount());
+		assertEquals(1, expensesByCategory.getCreditCount());
+		assertEquals(new BigDecimal("-25.00"), expensesByCategory.getTotalDebitAmountFor(new Category("Clothes")));
+		assertEquals(new BigDecimal("12.00"), expensesByCategory.getTotalCreditAmountFor(new Category("Clothes")));
+	}	
 	
 	@Test
 	public void mustGroupUncategorizedExpensesCorrectly() {
@@ -60,8 +84,8 @@ public class CategoryExpensesHelperTest {
 		assertFalse(expensesByCategory.isEmpty());
 		assertEquals(1, expensesByCategory.getDebitCount());
 		assertEquals(1, expensesByCategory.getCreditCount());
-		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("unspecified credit")));
-		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("unspecified debit")));
+		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditAmountFor(new Category("unspecified credit")));
+		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitAmountFor(new Category("unspecified debit")));
 	}
 
 	@Test
@@ -94,10 +118,10 @@ public class CategoryExpensesHelperTest {
 		assertFalse(expensesByCategory.isEmpty());
 		assertEquals(2, expensesByCategory.getDebitCount());
 		assertEquals(2, expensesByCategory.getCreditCount());
-		assertEquals(new BigDecimal("-25.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("Clothes")));
-		assertEquals(new BigDecimal("12.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("Wage")));
-		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("unspecified credit")));
-		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("unspecified debit")));
+		assertEquals(new BigDecimal("-25.00"), expensesByCategory.getTotalDebitAmountFor(new Category("Clothes")));
+		assertEquals(new BigDecimal("12.00"), expensesByCategory.getTotalCreditAmountFor(new Category("Wage")));
+		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditAmountFor(new Category("unspecified credit")));
+		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitAmountFor(new Category("unspecified debit")));
 	}
 	
 }
