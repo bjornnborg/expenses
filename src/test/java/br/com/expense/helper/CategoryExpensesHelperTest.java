@@ -9,10 +9,10 @@ import static org.junit.Assert.assertNotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
+import br.com.expense.helper.CategoryExpensesHelper.CategoryExpenses;
 import br.com.expense.model.Category;
 import br.com.expense.model.Currency;
 import br.com.expense.model.CurrencyInfo;
@@ -35,11 +35,11 @@ public class CategoryExpensesHelperTest {
 		t2.setCategory(new Category("Clothes"));
 		transactions.add(t2);
 		
-		Map<Category, BigDecimal> expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
+		CategoryExpenses expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
 		assertNotNull(expensesByCategory);
 		assertFalse(expensesByCategory.isEmpty());
-		assertEquals(1, expensesByCategory.keySet().size());
-		assertEquals(new BigDecimal("-37.00"), expensesByCategory.get(new Category("Clothes")));
+		assertEquals(1, expensesByCategory.getDebitCount());
+		assertEquals(new BigDecimal("-37.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("Clothes")));
 	}
 	
 	@Test
@@ -55,12 +55,13 @@ public class CategoryExpensesHelperTest {
 		t2.setCurrencyInfo(new CurrencyInfo(new BigDecimal("100"), Currency.REAL, new BigDecimal("1")));
 		transactions.add(t2);
 		
-		Map<Category, BigDecimal> expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
+		CategoryExpenses expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
 		assertNotNull(expensesByCategory);
 		assertFalse(expensesByCategory.isEmpty());
-		assertEquals(2, expensesByCategory.keySet().size());
-		assertEquals(new BigDecimal("100.00"), expensesByCategory.get(new Category("unspecified credit")));
-		assertEquals(new BigDecimal("-100.00"), expensesByCategory.get(new Category("unspecified debit")));
+		assertEquals(1, expensesByCategory.getDebitCount());
+		assertEquals(1, expensesByCategory.getCreditCount());
+		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("unspecified credit")));
+		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("unspecified debit")));
 	}
 
 	@Test
@@ -88,14 +89,15 @@ public class CategoryExpensesHelperTest {
 		t4.setCurrencyInfo(new CurrencyInfo(new BigDecimal("100"), Currency.REAL, new BigDecimal("1")));
 		transactions.add(t4);
 		
-		Map<Category, BigDecimal> expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
+		CategoryExpenses expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
 		assertNotNull(expensesByCategory);
 		assertFalse(expensesByCategory.isEmpty());
-		assertEquals(4, expensesByCategory.keySet().size());
-		assertEquals(new BigDecimal("-25.00"), expensesByCategory.get(new Category("Clothes")));
-		assertEquals(new BigDecimal("12.00"), expensesByCategory.get(new Category("Wage")));
-		assertEquals(new BigDecimal("100.00"), expensesByCategory.get(new Category("unspecified credit")));
-		assertEquals(new BigDecimal("-100.00"), expensesByCategory.get(new Category("unspecified debit")));
+		assertEquals(2, expensesByCategory.getDebitCount());
+		assertEquals(2, expensesByCategory.getCreditCount());
+		assertEquals(new BigDecimal("-25.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("Clothes")));
+		assertEquals(new BigDecimal("12.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("Wage")));
+		assertEquals(new BigDecimal("100.00"), expensesByCategory.getTotalCreditsAmountFor(new Category("unspecified credit")));
+		assertEquals(new BigDecimal("-100.00"), expensesByCategory.getTotalDebitsAmountFor(new Category("unspecified debit")));
 	}
 	
 }
