@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import br.com.expense.model.Category;
 import br.com.expense.model.Transaction;
@@ -24,6 +25,8 @@ public class CategoryExpensesHelper {
 	
 	public CategoryExpenses getExpensesByCategory() {
 		if (expensesByCategory.isEmpty()) {
+			expensesByCategory.put(CREDIT, new HashMap<Category, BigDecimal>());
+			expensesByCategory.put(DEBIT, new HashMap<Category, BigDecimal>());
 			for (Transaction transaction : transactions) {
 				Category category = transaction.getCategory();
 				if (category == null) {
@@ -33,11 +36,6 @@ public class CategoryExpensesHelper {
 						category = new Category("unspecified debit");
 					}
 				}
-				
-				if (expensesByCategory.get(transaction.getType()) == null) {
-					expensesByCategory.put(transaction.getType(), new HashMap<Category, BigDecimal>());
-				}
-				
 				
 				BigDecimal categorySum = expensesByCategory.get(transaction.getType()).get(category);
 				if (categorySum == null) {
@@ -63,6 +61,14 @@ public class CategoryExpensesHelper {
 		
 		public BigDecimal getTotalCreditAmountFor(Category category) {
 			return this.expensesByCategory.get(CREDIT).get(category);
+		}
+		
+		public Set<Category> allDebits() {
+			return this.expensesByCategory.get(DEBIT).keySet();
+		}
+		
+		public Set<Category> allCredits() {
+			return this.expensesByCategory.get(CREDIT).keySet();
 		}
 		
 		public int getDebitCount() {

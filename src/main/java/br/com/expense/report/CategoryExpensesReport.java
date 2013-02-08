@@ -1,41 +1,29 @@
 package br.com.expense.report;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import br.com.expense.helper.CategoryExpensesHelper;
+import br.com.expense.helper.CategoryExpensesHelper.CategoryExpenses;
+import br.com.expense.model.Category;
 import br.com.expense.model.Transaction;
 import br.com.expense.util.NumberUtil;
 
 public class CategoryExpensesReport {
 
-	private List<Transaction> transactions;
-	
-	private Map<String, BigDecimal> expensesByCategory = new HashMap<String, BigDecimal>();
+	private CategoryExpenses expensesByCategory;
 	
 	public CategoryExpensesReport(List<Transaction> transactions) {
-		this.transactions = transactions;
+		this.expensesByCategory = new CategoryExpensesHelper(transactions).getExpensesByCategory();
 	}
 
 	public String getContent() {
 		StringBuilder builder = new StringBuilder();
-		if (expensesByCategory.isEmpty()) {
-			for (Transaction transaction : transactions) {
-				String category = transaction.getCategory() != null ? transaction.getCategory().getName() : "unspecified";
-				// just in case we have same category name for debit or credit
-				category += "^" + transaction.getType();	
-				BigDecimal categorySum = expensesByCategory.get(category);
-				if (categorySum == null) {
-					categorySum = new BigDecimal(0);
-				}
-				expensesByCategory.put(category, categorySum.add(transaction.getValue()));
-			}
+		for (Category category : expensesByCategory.allCredits()) {
+			builder.append(category.getName() + ";" + NumberUtil.format(expensesByCategory.getTotalCreditAmountFor(category)) + "\r\n");
 		}
-		
-		for (String category : expensesByCategory.keySet()) {
-			builder.append(category.split("\\^")[0] + ";" + NumberUtil.format(expensesByCategory.get(category)) + "\r\n");
-		}		
+		for (Category category : expensesByCategory.allDebits()) {
+			builder.append(category.getName() + ";" + NumberUtil.format(expensesByCategory.getTotalDebitAmountFor(category)) + "\r\n");
+		}			
 
 		return builder.toString().replaceAll("\r\n$", "");		
 	}

@@ -56,8 +56,8 @@ public class CategoryExpensesReportTest {
 		CategoryExpensesReport report = new CategoryExpensesReport(transactions);
 		String reportContent = report.getContent();
 		assertNotNull(reportContent);
-		assertTrue(reportContent.startsWith("unspecified;-25.00"));
-		assertTrue(reportContent.endsWith("unspecified;43.18"));
+		assertTrue(reportContent.endsWith("unspecified debit;-25.00"));
+		assertTrue(reportContent.startsWith("unspecified credit;43.18"));
 	}	
 	
 }
