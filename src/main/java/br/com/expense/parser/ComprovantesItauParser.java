@@ -12,8 +12,6 @@ import br.com.expense.model.Currency;
 import br.com.expense.model.CurrencyInfo;
 import br.com.expense.model.Transaction;
 import br.com.expense.model.TransactionType;
-import br.com.expense.service.DateTimeService;
-import br.com.expense.service.DateTimeServiceImpl;
 import br.com.expense.util.DateTimeUtil;
 
 public class ComprovantesItauParser implements TransactionParser {
@@ -32,12 +30,6 @@ public class ComprovantesItauParser implements TransactionParser {
 		CREDIT_TRANSACTIONS_PATTERNS.add(Pattern.compile("Protocolo de dep.sito"));
 	}
 	
-	private DateTimeService dateTimeService;
-
-	public ComprovantesItauParser(DateTimeServiceImpl dateTimeServiceImpl) {
-		this.dateTimeService = dateTimeServiceImpl;
-	}
-
 	@Override
 	public List<Transaction> parse(String text) {
 		List<Transaction> transactions = new ArrayList<Transaction>();
