@@ -40,22 +40,34 @@ public class AnaliticExcelReport {
 				content += category.getName() + SEPARATOR;
 				String formula = "";
 				if (new Locale("pt", "BR").equals(locale)) {
-					formula = "=somase";
+					formula = "=SOMARPRODUTO";
 				} else {
-					formula = "=sumif";
+					formula = "=SUMPRODUCT";
 				}
-				content += formula + "(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + "," + "\"" + category.getName() + "\"" + "," + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + ")";
+				//=SUMPRODUCT((B6:B7<0)*(C6:C7="roupas"),B6:B7)
+				content += formula +
+						"(" +
+							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + " < 0" + ") * " +
+							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + category.getName() +"\"), " +
+							FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + 
+						")";
 				content += "\r\n";
 			}
 			for(Category category : expensesByCategory.allCredits()) {
 				content += category.getName() + SEPARATOR;
 				String formula = "";
 				if (new Locale("pt", "BR").equals(locale)) {
-					formula = "=somase";
+					formula = "=SOMARPRODUTO";
 				} else {
-					formula = "=sumif";
+					formula = "=SUMPRODUCT";
 				}
-			content += formula + "(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + "," + "\"" + category.getName() + "\"" + "," + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + ")";
+				//=SUMPRODUCT((B6:B7<0)*(C6:C7="roupas"),B6:B7)
+				content += formula +
+						"(" +
+							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + " >= 0" + ") * " +
+							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + category.getName() +"\"), " +
+							FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + 
+						")";
 				content += "\r\n";
 			}			
 			
@@ -74,5 +86,12 @@ public class AnaliticExcelReport {
 		}
 		return content;
 	}
+	
+	//=SUMPRODUCT(B5:B6,C5:C6="roupas",B5:B6>=0)
+	//{=SUM(($B$5:$B$6)*($B$5:$B$6<0)*($C$5:$C$6="roupas"))}
+	//=SUMPRODUCT((B6:B7<0)*(C6:C7="roupas"),B6:B7)
+	//SUM - SOMA
+	//SUMIF - SOMA.SE
+	//SUMPRODUCT - SOMARPRODUTO	
 
 }
