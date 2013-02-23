@@ -1,4 +1,4 @@
-BJORNN BORG O NEIL FELIX FARIAAgência: 3795Conta: 29795-5Acessar outras contas
+NOME CORRENTISTAAgência: 0000Conta: 00000-0Acessar outras contas
 
 Home|Conta Corrente|Poupança|Investimentos|Pagamentos|Crédito|Cobrança|CartõesTransferência, DOC e TED|Previdência|Seguros|Consórcio|Produtos e Serviços|Consultor on line 
 Meus Atalhos
@@ -25,24 +25,14 @@ Data	Tipo de operação	Origem/canal	Valor (R$)	Identificação	Comprovante
 Consulta	
 Envio de
 e-mail 
-04/02/2013	Título/Boleto de outros bancos	Internet	374,77 	Condominio	visualizar	enviar
 25/01/2013	Protocolo de depósito	Caixa Eletrônico	80,00 	CEI 000030 DINHEIRO	visualizar	
-22/01/2013	Transferência C/C-C/C	Internet	954,00 	Kart	visualizar	enviar
-14/01/2013	Água, luz, telefone e gás	Internet	297,47 	Telefone Phil	visualizar	enviar
-14/01/2013	Título/Boleto de outros bancos	Internet	363,47 	Consorcio 192	visualizar	enviar
+22/01/2013	Transferência C/C-C/C	Internet	54,00 	Kart	visualizar	enviar
 14/01/2013	Água, luz, telefone e gás	Internet	53,91 	Eletropaulo	visualizar	enviar
-14/01/2013	Água, luz, telefone e gás	Internet	134,60 	Vivo bjornn	visualizar	enviar
-14/01/2013	Água, luz, telefone e gás	Internet	73,35 	Vivo fixo	visualizar	enviar
-14/01/2013	Título/Boleto de outros bancos	Internet	287,02 	Medial	visualizar	enviar
-14/01/2013	Água, luz, telefone e gás	Internet	130,00 	Vivo Regina	visualizar	enviar
-14/01/2013	Cartão de Crédito	Internet	5.091,56 	 	visualizar	
-14/01/2013	Detran SP - DPVAT	Internet	105,65 	 	visualizar	
-14/01/2013	Detran SP - IPVA	Internet	318,83 	 	visualizar	
-10/01/2013	DOC C - outra titularidade	Internet	1.500,00 	Aluguel	visualizar	enviar
-10/01/2013	Título/Boleto de outros bancos	Internet	57,15 	Company	visualizar	enviar
-10/01/2013	Título/Boleto de outros bancos	Internet	1.099,41 	Aluguel Gustavo	visualizar	enviar
-10/01/2013	Título/Boleto de outros bancos	Internet	105,90 	Internet	visualizar	enviar
-10/01/2013	Débito Automático	Débito Automático	351,90 	SISDEB SEM PARAR	visualizar	
+14/01/2013	Água, luz, telefone e gás	Internet	34,60 	Celular	visualizar	enviar
+14/01/2013	Detran SP - DPVAT	Internet	05,65 	 	visualizar	
+14/01/2013	Detran SP - IPVA	Internet	8,83 	 	visualizar	
+10/01/2013	DOC C - outra titularidade	Internet	821.010,00 	Aluguel	visualizar	enviar
+10/01/2013	Débito Automático	Débito Automático	11,90 	SISDEB SEM PARAR	visualizar	
 
 Se você possui comprovantes de Pague Contas Automático, clique aqui.
 O comprovante não está disponível para consulta / envio.	
