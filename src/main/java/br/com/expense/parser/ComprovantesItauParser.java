@@ -1,5 +1,8 @@
 package br.com.expense.parser;
 
+import static br.com.expense.model.TransactionType.CREDIT;
+import static br.com.expense.model.TransactionType.DEBIT;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,7 +49,7 @@ public class ComprovantesItauParser implements TransactionParser {
 			System.out.println(transaction.getDescription());
 			transaction.setType(resolveType(transactionRecord.group(2)));
 			String value = transactionRecord.group(4).trim().replaceAll("\\.", "").replaceAll("\\,", ".");
-			if (TransactionType.DEBIT == transaction.getType()) {
+			if (DEBIT == transaction.getType()) {
 				value = "-" + value;
 			}
 			transaction.setCurrencyInfo(new CurrencyInfo(new BigDecimal(value), Currency.REAL, new BigDecimal("1")));
@@ -56,11 +59,11 @@ public class ComprovantesItauParser implements TransactionParser {
 	}
 	
 	private TransactionType resolveType(String operationTypeDescription) {
-		TransactionType type = TransactionType.DEBIT;
+		TransactionType type = DEBIT;
 		for(Pattern pattern : CREDIT_TRANSACTIONS_PATTERNS) {
 			Matcher matcher = pattern.matcher(operationTypeDescription);
 			if (matcher.find()) {
-				type = TransactionType.CREDIT;
+				type = CREDIT;
 				break;
 			}
 		}
