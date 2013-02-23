@@ -7,12 +7,12 @@ import java.util.List;
 import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
+import br.com.expense.parser.ComprovantesItauParser;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
 import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
-import br.com.expense.report.CategoryExpensesReport;
-import br.com.expense.report.TransactionRecordReport;
+import br.com.expense.report.AnaliticExcelReport;
 import br.com.expense.service.DateTimeServiceImpl;
 import br.com.expense.util.FileUtil;
 
@@ -31,6 +31,7 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	private List<TransactionParser> getDefaultParsers() {
 		List<TransactionParser> parsers = new ArrayList<TransactionParser>();
 		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
+		parsers.add(new ComprovantesItauParser());
 		return parsers;
 	}
 
@@ -47,18 +48,6 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		}
 		
 		List<Transaction> transactions = this.parserEngine.getTransactions(basePath);
-		
-		StringBuilder reportContent = new StringBuilder();
-		
-		CategoryExpensesReport categoryExpenses = new CategoryExpensesReport(transactions);
-		reportContent.append(categoryExpenses.getContent());
-		
-		reportContent.append("\r\n");
-		reportContent.append("\r\n");
-		
-		TransactionRecordReport transactionRecords = new TransactionRecordReport(transactions);
-		reportContent.append(transactionRecords.getContent());
-		
-		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), reportContent.toString());
+		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), new AnaliticExcelReport(transactions).getContent());
 	}
 }
