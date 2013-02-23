@@ -44,11 +44,14 @@ public class AnaliticExcelReport {
 				} else {
 					formula = "=SUMPRODUCT";
 				}
+				
+				String textToSum = getTextToSum(category.getName());
+				
 				//=SUMPRODUCT((B6:B7<0)*(C6:C7="roupas"),B6:B7)
 				content += formula +
 						"(" +
 							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + " < 0" + ") * " +
-							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + category.getName() +"\"), " +
+							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + textToSum +"\"), " +
 							FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + 
 						")";
 				content += "\r\n";
@@ -61,11 +64,14 @@ public class AnaliticExcelReport {
 				} else {
 					formula = "=SUMPRODUCT";
 				}
+				
+				String textToSum = getTextToSum(category.getName());
+				
 				//=SUMPRODUCT((B6:B7<0)*(C6:C7="roupas"),B6:B7)
 				content += formula +
 						"(" +
 							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + " >= 0" + ") * " +
-							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + category.getName() +"\"), " +
+							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + textToSum +"\"), " +
 							FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + 
 						")";
 				content += "\r\n";
@@ -85,6 +91,10 @@ public class AnaliticExcelReport {
 			}
 		}
 		return content;
+	}
+
+	private String getTextToSum(String name) {
+		return "unspecified credit".equals(name) || "unspecified debit".equals(name) ? "" : name;
 	}
 	
 	//=SUMPRODUCT(B5:B6,C5:C6="roupas",B5:B6>=0)
