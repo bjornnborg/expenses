@@ -46,7 +46,6 @@ public class ComprovantesItauParser implements TransactionParser {
 				description = transactionRecord.group(2);
 			}
 			transaction.setDescription(description.replaceAll("\\t", ""));
-			System.out.println(transaction.getDescription());
 			transaction.setType(resolveType(transactionRecord.group(2)));
 			String value = transactionRecord.group(4).trim().replaceAll("\\.", "").replaceAll("\\,", ".");
 			if (DEBIT == transaction.getType()) {
