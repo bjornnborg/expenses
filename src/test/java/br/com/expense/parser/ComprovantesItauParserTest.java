@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static br.com.expense.model.TransactionType.CREDIT;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
@@ -34,6 +35,14 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 		assertNotNull(transactions);
 		assertEquals("Detran SP - DPVAT", transactions.get(4).getDescription());
 		assertEquals("Detran SP - IPVA", transactions.get(5).getDescription());
+	}
+	
+	@Test
+	public void mustIdentifyCreditTransactionsCorrectly() throws FileNotFoundException {
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes.txt"));
+		assertNotNull(transactions);
+		assertEquals("CEI 000030 DINHEIRO", transactions.get(0).getDescription());
+		assertEquals(CREDIT, transactions.get(0).getType());
 	}
 	
 }
