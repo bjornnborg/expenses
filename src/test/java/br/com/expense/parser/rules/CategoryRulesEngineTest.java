@@ -23,5 +23,15 @@ public class CategoryRulesEngineTest extends BaseParserTest{
 		assertNotNull(category);
 		assertEquals("supermercado", category.getName());
 	}
+	
+	@Test
+	public void mustBeCaseInsensitive() throws FileNotFoundException {
+		CategoryRulesEngine rulesEngine = new CategoryRulesEngine(Configuration.preset(getPath(".")), new CategoryRulesParser());
+		Transaction transaction = new Transaction();
+		transaction.setDescription("Pao De ACUCAR");
+		Category category = rulesEngine.getCategoryFor(transaction.getDescription());
+		assertNotNull(category);
+		assertEquals("supermercado", category.getName());
+	}
 
 }

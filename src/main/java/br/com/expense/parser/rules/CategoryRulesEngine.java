@@ -26,7 +26,7 @@ public class CategoryRulesEngine {
 		for (String regex : categories.keySet()) {
 			Pattern pattern = compiledPatterns.get(regex);
 			if (pattern == null) {
-				pattern = Pattern.compile(regex);
+				pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 				compiledPatterns.put(regex, pattern);
 			}
 			
