@@ -18,12 +18,12 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void shouldAcceptIfMatches() throws FileNotFoundException, URISyntaxException {
-		assertTrue(new ComprovantesItauParser().accept(this.loadFile("itau-comprovantes.txt")));
+		assertTrue(new ComprovantesItauParser().accept(this.loadFile("itau-comprovantes-pf.txt")));
 	}
 	
 	@Test
 	public void parseTransactions() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
 		assertNotNull(transactions);
 		assertFalse(transactions.isEmpty());
 		assertEquals(8, transactions.size());
@@ -31,7 +31,7 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void mustUseTransactionTypeAsDescriptionWhenDescriptionIsNull() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
 		assertNotNull(transactions);
 		assertEquals("Detran SP - DPVAT", transactions.get(4).getDescription());
 		assertEquals("Detran SP - IPVA", transactions.get(5).getDescription());
@@ -39,7 +39,7 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void mustIdentifyCreditTransactionsCorrectly() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
 		assertNotNull(transactions);
 		assertEquals("CEI 000030 DINHEIRO", transactions.get(0).getDescription());
 		assertEquals(CREDIT, transactions.get(0).getType());
