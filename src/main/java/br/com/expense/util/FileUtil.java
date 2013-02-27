@@ -46,6 +46,7 @@ public class FileUtil {
 		try {
 			 bw = new BufferedWriter(new FileWriter(file));
 			 bw.write(content);
+			 bw.flush();
 			 bw.close();
 		} catch (IOException e) {
 			if (bw != null) {
