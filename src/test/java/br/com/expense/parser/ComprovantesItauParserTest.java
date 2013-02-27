@@ -22,11 +22,24 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	}
 	
 	@Test
+	public void shouldAcceptIfMatchesCorporateReceipts() throws FileNotFoundException, URISyntaxException {
+		assertTrue(new ComprovantesItauParser().accept(this.loadFile("itau-comprovantes-pj.txt")));
+	}	
+	
+	@Test
 	public void parseTransactions() throws FileNotFoundException {
 		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
 		assertNotNull(transactions);
 		assertFalse(transactions.isEmpty());
 		assertEquals(8, transactions.size());
+	}
+	
+	@Test
+	public void parseTransactionsFromCorporateReceipts() throws FileNotFoundException {
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pj.txt"));
+		assertNotNull(transactions);
+		assertFalse(transactions.isEmpty());
+		assertEquals(7, transactions.size());
 	}
 	
 	@Test
