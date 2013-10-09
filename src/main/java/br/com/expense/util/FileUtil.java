@@ -4,8 +4,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class FileUtil {
@@ -41,10 +43,14 @@ public class FileUtil {
 		return content.toString();
 	}
 	
-	public static void writeFile(File file, String content) {
+	public static void writeFile(File file, String content, String encoding) {
 		BufferedWriter bw = null;
 		try {
-			 bw = new BufferedWriter(new FileWriter(file));
+			 if (encoding != null) {
+				 bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding));
+			 } else {
+				 bw = new BufferedWriter(new FileWriter(file));
+			 }
 			 bw.write(content);
 			 bw.flush();
 			 bw.close();
@@ -57,5 +63,9 @@ public class FileUtil {
 				}
 			}
 		}		
+	}
+	
+	public static void writeFile(File file, String content) {
+		writeFile(file, content, null);
 	}
 }

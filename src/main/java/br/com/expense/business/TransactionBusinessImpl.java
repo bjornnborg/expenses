@@ -48,6 +48,6 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		}
 		
 		List<Transaction> transactions = this.parserEngine.getTransactions(basePath);
-		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), new AnaliticExcelReport(transactions).getContent());
+		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), new AnaliticExcelReport(transactions).getContent(), "ISO-8859-1");
 	}
 }
