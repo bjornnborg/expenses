@@ -56,8 +56,8 @@ public class AnaliticExcelReportTest {
 		assertEquals("Content must have 8 lines", 8, content.split("\r\n").length);
 		assertTrue(content.contains("D6:D8"));
 		assertTrue(content.contains("C6:C8"));
-		assertTrue(content.contains("=SUMPRODUCT((C6:C8 < 0) * (D6:D8 = \"Entertainment\"), C6:C8)"));
-		assertTrue(content.contains("=SUMPRODUCT((C6:C8 >= 0) * (D6:D8 = \"REVENUE\"), C6:C8)"));
+		assertTrue(content.contains("=SUMPRODUCT((C6:C8 < 0) * (D6:D8 = \"Entertainment\") * (C6:C8))"));
+		assertTrue(content.contains("=SUMPRODUCT((C6:C8 >= 0) * (D6:D8 = \"REVENUE\") * (C6:C8))"));
 		
 	}
 	

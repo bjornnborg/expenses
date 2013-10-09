@@ -71,8 +71,8 @@ public class AnaliticExcelReport {
 				content += formula +
 						"(" +
 							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + " >= 0" + ") * " +
-							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + textToSum +"\"), " +
-							FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + 
+							"(" + FIELDS[CATEGORY_FIELD_INDEX] + start + ":" + FIELDS[CATEGORY_FIELD_INDEX] + end + " = \"" + textToSum +"\") * " +
+							"(" + FIELDS[AMOUNT_FIELD_INDEX] + start + ":" + FIELDS[AMOUNT_FIELD_INDEX] + end + ")" + 
 						")";
 				content += "\r\n";
 			}			
