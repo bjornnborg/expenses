@@ -20,7 +20,7 @@ public class FileUtil {
 		StringBuilder content = new StringBuilder();
 		Scanner sc = null;
 		try {
-			sc = new Scanner(new FileInputStream(path), "ISO-8859-1");
+			sc = new Scanner(new FileInputStream(path), "UTF-8");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -61,6 +61,6 @@ public class FileUtil {
 	}
 	
 	public static void writeFile(File file, String content) {
-		writeFile(file, content, "ISO-8859-1");
+		writeFile(file, content, "UTF-8");
 	}
 }
