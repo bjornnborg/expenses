@@ -26,7 +26,9 @@ public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 	private static Pattern CHECKING_ACCOUNT_LINE = Pattern.compile("^Saldo de Conta Corrente", Pattern.MULTILINE);
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+site^");
 	
-	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(CEP/.+)", Pattern.DOTALL);
+	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(Aviso.*)", Pattern.DOTALL);
+	private static Pattern SCHEDULED_TRANSACTIONS_SNIPPET = Pattern.compile("(Lan.amentos.+futuros.+)", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
+	
 	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2})\\s+(D\\s|C\\s)?(.+?\\s+)((\\d{1,3}\\.?)+,(\\d{2}))(.*)", Pattern.MULTILINE);
 	private static final Set<String> BALANCE_ENTRIES = new HashSet<String>();
 	
@@ -99,7 +101,16 @@ public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 		if (matcher.matches()) {
 			snippet = matcher.group(2);
 		}
-		return snippet;
+		return removeScheduledTransactions(snippet);
+	}
+	
+	private String removeScheduledTransactions(String text) {
+		String snippet = text;
+		Matcher matcher = SCHEDULED_TRANSACTIONS_SNIPPET.matcher(text);
+		if (matcher.find()) {
+			snippet = snippet.replace(matcher.group(1), "");
+		}
+		return snippet;		
 	}
 	
 	private boolean hasHeader(String text) {
