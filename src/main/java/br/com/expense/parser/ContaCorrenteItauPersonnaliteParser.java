@@ -19,12 +19,14 @@ import br.com.expense.model.Transaction;
 import br.com.expense.service.DateTimeService;
 import br.com.expense.util.DateTimeUtil;
 
-public class ContaCorrenteItauParser implements TransactionParser {
+public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 	
-	private static Pattern HEADER = Pattern.compile("Ag.ncia.+|\\s+Conta\\sCorrente.+|.+Investimentos");
+	private static Pattern HEADER = Pattern.compile("Ag.ncia:.+Conta:");
+	private static Pattern PERSONNALITE_LINE = Pattern.compile("^Ita.+Personnalite", Pattern.MULTILINE);
+	private static Pattern CHECKING_ACCOUNT_LINE = Pattern.compile("^Saldo de Conta Corrente", Pattern.MULTILINE);
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+site^");
 	
-	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(Posi.+)", Pattern.DOTALL);
+	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(CEP/.+)", Pattern.DOTALL);
 	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2})\\s+(D\\s|C\\s)?(.+?\\s+)((\\d{1,3}\\.?)+,(\\d{2}))(.*)", Pattern.MULTILINE);
 	private static final Set<String> BALANCE_ENTRIES = new HashSet<String>();
 	
@@ -37,7 +39,7 @@ public class ContaCorrenteItauParser implements TransactionParser {
 	
 	private DateTimeService dateTimeService;
 
-	public ContaCorrenteItauParser(DateTimeService dateTimeService) {
+	public ContaCorrenteItauPersonnaliteParser(DateTimeService dateTimeService) {
 		this.dateTimeService = dateTimeService;
 	}
 
@@ -88,7 +90,7 @@ public class ContaCorrenteItauParser implements TransactionParser {
 	
 	@Override
 	public boolean accept(String text) {
-		return hasHeader(text) && hasFooter(text);
+		return hasHeader(text) && isPersonnaliteAccount(text) && isCheckingAccount(text) && hasFooter(text);
 	}
 	
 	private String getTransactionsSnippet(String text) {
@@ -107,10 +109,18 @@ public class ContaCorrenteItauParser implements TransactionParser {
 	private boolean hasFooter(String text) {
 		return FOOTER.matcher(text).find();
 	}
+	
+	private boolean isCheckingAccount(String text) {
+		return CHECKING_ACCOUNT_LINE.matcher(text).find();
+	}
+	
+	private boolean isPersonnaliteAccount(String text) {
+		return PERSONNALITE_LINE.matcher(text).find();
+	}
 
 	@Override
 	public String getName() {
-		return "Itaú accounts parser";
+		return "Itaú Personnalite accounts parser";
 	}
 	
 }

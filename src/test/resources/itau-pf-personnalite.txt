@@ -1,17 +1,17 @@
-BJORNN BORG O NEIL FELIX FARIAAgência: 0000Conta: 00000-0Acessar outras contas
-
-Home|Conta Corrente|Poupança|Investimentos|Pagamentos|Crédito|Cobrança|CartõesTransferência, DOC e TED|Previdência|Seguros|Consórcio|Produtos e Serviços
+BJORNN BORG O NEIL FELIX FARIAAgência: 0000Conta: 00000-0Acessar outras contasEncerrar sessão
+Itaú Personnalite
+Home|Conta Corrente|Poupança|Investimentos|Pagamentos|Crédito|Cobrança|Cartões|SegurosTransferência, DOC e TED|Previdência|Consórcio|Produtos e Serviços|LiveInvest
 Meus Atalhos
 
-
-Home > ver extrato
+Executar a busca
+Home > Conta Corrente > Saldo e Extrato > Extrato
 
 Saldo de Conta Corrente
- 	 	 	 	 	 	 	Saldo de 03/02/2013 às 17:44:43h	 
+ 	 	 	 	 	 	 	Saldo de 09/10/2013 às 23:42:53h	 
  Descrição                                                                                                                                 Valor (R$)
- DISPONIVEL P/ SAQUE	137,51	
- CEP (SUJEITO A ENCARGOS)	2.121,00	
- TOTAL P/ SAQUE	437,51	
+ DISPONIVEL P/ SAQUE	0.000,00	
+ CEP (SUJEITO A ENCARGOS)	0.000,00	
+ TOTAL P/ SAQUE	00.000,00	
 Extrato
  
  
@@ -19,73 +19,70 @@ Filtrar por:
 Período: 	
 
  
-Extrato de 19/01/2013 até 03/02/2013
-Janeiro/2013
+Extrato de 09/09/2013 até 09/10/2013
+Setembro/2013
  Data	 	 	Lançamento	 	Valor (R$)	  	Saldo (R$)	  
-18/01			SALDO ANTERIOR				204,92	
-21/01			RSHOP-PAES E DOCE-18/01	5934	17,00	-		
-21/01			SDO CTA/APL AUTOMATICAS				187,91	
-22/01			TBI 0253.50204-1Kart	4175	54,00	-		
-22/01			SDO CTA/APL AUTOMATICAS				23,91	
-23/01			TBI 7910.82866-9Bruna	4175	4,00			
-23/01			SDO CTA/APL AUTOMATICAS				27,91	
-24/01			RSHOP-PAD E EMPOR-23/01	5934	5,41	-		
-24/01			SDO CTA/APL AUTOMATICAS				32,50	
-25/01			TBI 9635.01004-5Bjorn	4175	10,00			
-25/01			SDO CTA/APL AUTOMATICAS				52,50	
-28/01			CXE 001842 SAQUE	7619	50,00	-		
-28/01			CEI 000030 DINHEIRO	1335	10,00			
-28/01			SDO CTA/APL AUTOMATICAS				62,50	
-29/01			SDO CTA/APL AUTOMATICAS				62,50	
-30/01			SDO CTA/APL AUTOMATICAS				62,51	
-31/01			RSHOP-PAES E DOCE-30/01	5934	6,50	-		
-31/01			SAQUE 24H 03199577	5086	20,00	-		
-31/01			TEC DEPOSITO DINHEIRO	8020	2,00			
-31/01			TBI 6288.07560-6farmacia	4175	15,00			
-31/01			SDO CTA/APL AUTOMATICAS				43,01	
+06/09			SALDO ANTERIOR				999.999,99	
+09/09	D		DOC INT 510367 Aluguel		999.999,99	-		
+09/09	D		INT PAG TIT BANCO 237	4175	999.999,99	-		
+09/09			INT PAG TIT 175159844071	4175	999.999,99	-		
+09/09			TBI 2965.06141-5 C/C	4175	999.999,99			
+09/09			REND PAGO APLIC AUT MAIS		0,10			
+09/09			SDO CTA/APL AUTOMATICAS				999,99	
+10/09			CH COMPENSADO 341 000112	5939	999,99	-		
+10/09			SISDEB NET SP		999,99	-		
+10/09			S A L D O				99,99	-
+11/09			CEI 000040 DINHEIRO	1145	999,99			
+11/09			S A L D O				95,13	
+13/09			RSHOP-ESTACIONAME-12/09	5934	9,99	-		
+17/09			CXE 001636 SAQUE	7619	999,99	-		
+18/09			SISPAG XXX XXX	262	123,45			
+20/09			SAQUE 24H 01758580	5086	999,99	-		
  
-Fevereiro/2013
+Outubro/2013
  Data	 	 	Lançamento	 	Valor (R$)	 	Saldo (R$)	  
-01/02			RSHOP-MC DONALD S-31/01	5934	5,50	-		
-01/02			SDO CTA/APL AUTOMATICAS				47,51	
+01/10			CXE 001768 SAQUE	7619	999,99	-		
+01/10	D		INT PAG TIT BANCO 237	4175	999,99	-		
+01/10			IOF		0,72	-		
+02/10			TAR MULTICTA MENS 09/13		99,99	-		
+02/10			S A L D O				27,05	
+04/10			TBI 9999.99999-1Juliano	4175	999,99			
+04/10			S A L D O				187,05	
  
 
-Posição da Conta Corrente
-Referente a 03/02/2013 às 17:44:43h
-  Descrição	Valor (R$)  
-(+) SDO PROV CTA + APL AUTOM	47,51
-(=) SALDO DISPONIVEL PARA SAQUE	47,51
-(+) CEP (SUJEITO A ENCARGOS)	40,00
-(=) VALOR TOTAL DISPONIVEL PARA SAQUE	137,51
-(=) SDO DISP P/ APLIC HOJE	47,51
- 
 CEP/CEP Plus
-Referente a 03/02/2013 às 17:44:43h
   Descrição
- DATA DE VENCIMENTO	15/02/2013
- TAXA DE JUROS MENSAL	 8,750 % PRE
- TAXA DE JUROS ANUAL	173,622
- CUSTO EFETIVO TOTAL(CET) AO MÊS	9,250%
- CUSTO EFETIVO TOTAL(CET) AO ANO	193,400%
+ DATA DE VENCIMENTO	15/10/2013
+ TAXA DE JUROS MENSAL	 9,130 % PRE
+ TAXA DE JUROS ANUAL	185,318%
+ CUSTO EFETIVO TOTAL(CET) AO MÊS	9,630%
+ CUSTO EFETIVO TOTAL(CET) AO ANO	206,060%
  
   Descrição	Valor (R$)
- JUROS ACUMULADOS ATÉ 03/02 (JUROS DO LIMITE)	 0,00
+ JUROS ACUMULADOS ATÉ 07/10 (JUROS DO LIMITE)	R$9,99
+QTDE. DIAS UTILIZADOS NO PERÍODO	 10
  
+ 
+Lançamentos futuros
+Data			Lançamentos				Valor (R$)	
+10/10			RSHOP-RICO SABOR -09/10	6509				99,99-
+10/10			SISDEB NET SP	 0				999,99-
+10/10			SISDEB SEM PARAR	 0				999,99-
  
 Linhas de crédito pré-aprovadas
  Produto	Total pré-aprovado (R$) (1)		
- Crediário Automático Personnalité	60.290,00		Contrate agora
- Autobank	 171.600,00	 	Acesse o iCarros
+ Crediário Automático Personnalité	999.999,00	(2)	Contrate agora
+ Autobank	 999.999,00	 	Acesse o iCarros
  
 (1)A disponibilidade da oferta desse limite depende da manutenção das condições atuais do cliente para concessão/renovação de crédito. A oferta do limite também perderá sua validade se qualquer ato normativo vier a impedir ou a restringir as operações de crédito. 
-(2)O valor disponível para contratação nos canais eletrônicos está limitado a R$ 100.000,00. Para contratar valores superiores, contate seu gerente.
+(2)O valor disponível para contratação nos canais eletrônicos está limitado a R$ 999.999,00. Para contratar valores superiores, contate seu gerente.
  	 	 	 	 	 	 	 	 
  
-
+Aviso
 - Os saldos acima são baseados nas informações disponíveis até esse instante e poderão ser alterados a qualquer momento em função de novos lançamentos.
 - Solicite ao seu gerente a última versão das Condições Gerais de sua Multiconta Personnalité e dos Serviços em sua agência.
 Opções
-Calculadora  
+Calculadora  Calculadora
 Versão para Impressão  
 Gerar PDF  
 Gerar arquivo em Excel
@@ -97,4 +94,6 @@ Limites de crédito
 Comprovantes
 Consulta as legendas do extrato de conta corrente
 2ª via do Activité
-Itaú Unibanco S.A.     |     Atendimento     |     Segurança     |     Mapa do site     |      Acompanhe:       
+Fale com o Itaú Personnalité
+
+Itaú Unibanco S.A.     |     Atendimento     |     Segurança     |     Mapa do site     |      Acompanhe: Acompanhe o Personnalité no Facebook  Acompanhe o Itaú no Twitter  Acompanhe o Itaú via RSS  Acompanhe o Itaú no Youtube
