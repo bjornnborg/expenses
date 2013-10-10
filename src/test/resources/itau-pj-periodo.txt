@@ -1,0 +1,56 @@
+Home » Contas » Extrato » Por período
+
+Extrato de conta corrente
+
+		
+
+	
+ 	 	 	 	 	 	 	 	 
+ Posição da Conta Corrente e Conta Investimento  - 09/10/2013 às 23:52:12h
+ 
+ 
+Extrato - Por Período	05/09/2013 a 04/10/2013
+ 
+Data	 	 	Lançamento	 	Valor (R$)	 	Saldo (R$)	 
+03/09	 	 	SALDO ANTERIOR	 	 	 	99,99	-
+05/09	D	 	INT PAG TIT BANCO 033	4175	999,99	-	 	 
+05/09	 	 	SISPAG XXXX	262	999.999,99	 	 	 
+05/09	 	 	S A L D O	 	 	 	999.999,99	 
+06/09	 	 	TBI 3795.29795-5 C/C	4175	999.999,99	-	 	 
+06/09	 	 	INT DAS 1324802466920	4175	999,99	-	 	 
+06/09	 	 	S A L D O	 	 	 	9999.999,99	 
+09/09	 	 	TBI 3795.29795-5 C/C	4175	999.999,99	-	 	 
+09/09	 	 	S A L D O	 	 	 	99,99	 
+01/10	 	 	IOF	 	0,15	-	 	 
+01/10	 	 	S A L D O	 	 	 	99,99	 
+02/10	 	 	TAR MAXCTA PJ MENS 09/13	 	99,99	-	 	 
+02/10	 	 	S A L D O	 	 	 	99,99	 
+04/10	 	 	SISPAG XXXX	262	999.999,99	 	 	 
+04/10	 	 	S A L D O	 	 	 	999.999,99	 
+ 
+
+- Os saldos acima são baseados nas informações disponíveis até esse instante e poderão ser alterados a qualquer momento em função de novos lançamentos.
+
+		
+
+	
+Nova consulta:
+Período disponível para consulta:	últimos 60 dias.
+Data inicial:	 /  /    dd/mm/aaaa
+Data Final:	 /  /    dd/mm/aaaa - opcional	OK 
+
+		
+   Você pode:  ic_impressao.gif Imprimir   Salvar em Excel Salvar em outros formatos
+		
+		
+
+	
+ Ir para:	
+
+		
+
+Itaú Unibanco S.A.     |     Segurança     |     Mapa do site
+
+
+
+Central de Relacionamento
