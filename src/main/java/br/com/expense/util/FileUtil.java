@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Scanner;
@@ -21,7 +20,7 @@ public class FileUtil {
 		StringBuilder content = new StringBuilder();
 		Scanner sc = null;
 		try {
-			sc = new Scanner(new FileInputStream(path));
+			sc = new Scanner(new FileInputStream(path), "ISO-8859-1");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -46,11 +45,7 @@ public class FileUtil {
 	public static void writeFile(File file, String content, String encoding) {
 		BufferedWriter bw = null;
 		try {
-			 if (encoding != null) {
-				 bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding));
-			 } else {
-				 bw = new BufferedWriter(new FileWriter(file));
-			 }
+			 bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), encoding));
 			 bw.write(content);
 			 bw.flush();
 			 bw.close();
@@ -66,6 +61,6 @@ public class FileUtil {
 	}
 	
 	public static void writeFile(File file, String content) {
-		writeFile(file, content, null);
+		writeFile(file, content, "ISO-8859-1");
 	}
 }
