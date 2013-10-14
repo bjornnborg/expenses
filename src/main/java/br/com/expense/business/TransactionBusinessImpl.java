@@ -8,6 +8,7 @@ import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
 import br.com.expense.parser.ComprovantesItauParser;
+import br.com.expense.parser.ContaCorrenteItauPersonnaliteParser;
 import br.com.expense.parser.ContaCorrenteItauPjParser;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
@@ -34,6 +35,7 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
 		parsers.add(new ComprovantesItauParser());
 		parsers.add(new ContaCorrenteItauPjParser(new DateTimeServiceImpl()));
+		parsers.add(new ContaCorrenteItauPersonnaliteParser(new DateTimeServiceImpl()));
 		System.out.println(">> Utilizando parsers: ");
 		for (TransactionParser transactionParser : parsers) {
 			System.out.println("  >> " + transactionParser.getName());
