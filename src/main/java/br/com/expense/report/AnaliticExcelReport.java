@@ -27,7 +27,7 @@ public class AnaliticExcelReport {
 	public String getContent() {
 		if (content == null) {
 			content = "";
-			FormulaHelper formulaHelper = new FormulaHelper(expensesByCategory);
+			FormulaHelper formulaHelper = new FormulaHelper(expensesByCategory, transactions);
 			for(Category category : expensesByCategory.allDebits()) {
 				content += category.getName() + SEPARATOR;
 				content += formulaHelper.getNegativeFormula(category);
@@ -64,11 +64,11 @@ public class AnaliticExcelReport {
 		private int start;
 		private int end;
 		
-		private FormulaHelper(CategoryExpenses expensesByCategory) {
-			int transactionsCount = expensesByCategory.allCredits().size() + expensesByCategory.allDebits().size(); 
+		private FormulaHelper(CategoryExpenses expensesByCategory, List<Transaction> transactions) {
+			int transactionsCount = transactions.size(); 
 			int categoriesCount = expensesByCategory.getCreditCount() + expensesByCategory.getDebitCount();
 			start = categoriesCount + BLANK_LINES + 1;
-			end = start + transactionsCount - 1;			
+			end = start + transactionsCount - 1;
 		}
 		
 		public String getPositiveFormula(Category category) {
