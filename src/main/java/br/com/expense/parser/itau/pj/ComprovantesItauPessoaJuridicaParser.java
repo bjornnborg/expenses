@@ -112,7 +112,7 @@ public class ComprovantesItauPessoaJuridicaParser implements TransactionParser {
 
 	@Override
 	public String getName() {
-		return "Itaú personnalite receipts parser";
+		return "Itaú pessoa jurídica receipts parser";
 	}
 
 }
