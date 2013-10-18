@@ -59,5 +59,6 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		
 		List<Transaction> transactions = this.parserEngine.getTransactions(basePath);
 		FileUtil.writeFile(new File(basePath, "expenses-report.csv"), new AnaliticExcelReport(transactions).getContent());
+		System.out.println(String.format(">> %d transactions", transactions.size()));
 	}
 }
