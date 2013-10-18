@@ -17,7 +17,7 @@ import br.com.expense.model.Transaction;
 import br.com.expense.model.TransactionType;
 import br.com.expense.util.DateTimeUtil;
 
-public class ComprovantesItauParser implements TransactionParser {
+public class ComprovantesItauPersonnaliteParser implements TransactionParser {
 	
 	private static Pattern HEADER = Pattern.compile("Home.+>.+Comprovantes");
 	private static Pattern KEY_LINE = Pattern.compile("^Comprovantes$", Pattern.MULTILINE);
@@ -111,7 +111,7 @@ public class ComprovantesItauParser implements TransactionParser {
 
 	@Override
 	public String getName() {
-		return "Itaú receipts parser";
+		return "Itaú personnalite receipts parser";
 	}
 
 }
