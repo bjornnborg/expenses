@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.CartaoPersonnaliteParser;
-import br.com.expense.parser.ComprovantesItauParser;
+import br.com.expense.parser.ComprovantesItauPersonnaliteParser;
 import br.com.expense.parser.ContaCorrenteItauPersonnaliteParser;
 import br.com.expense.parser.ContaCorrenteItauPjParser;
 import br.com.expense.parser.TransactionParser;
@@ -33,7 +33,7 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 	private List<TransactionParser> getDefaultParsers() {
 		List<TransactionParser> parsers = new ArrayList<TransactionParser>();
 		parsers.add(new CartaoPersonnaliteParser(new DateTimeServiceImpl()));
-		parsers.add(new ComprovantesItauParser());
+		parsers.add(new ComprovantesItauPersonnaliteParser());
 		parsers.add(new ContaCorrenteItauPjParser(new DateTimeServiceImpl()));
 		parsers.add(new ContaCorrenteItauPersonnaliteParser(new DateTimeServiceImpl()));
 		System.out.println(">> Utilizando parsers: ");
