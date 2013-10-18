@@ -32,7 +32,7 @@ public class TransactionParserEngine {
 			boolean contentAlreadyParsed = false;
 			for (TransactionParser parser : transactionParsers) {
 				if (parser.accept(fileContent)) {
-					System.out.println(">> File " + fileName + " accepted by " + parser.getName());
+					System.out.println("  >> File " + fileName + " accepted by " + parser.getName());
 					if (contentAlreadyParsed) {
 						throw new IllegalArgumentException("More then 1 parser for content:\r\n" + fileContent);
 					}
