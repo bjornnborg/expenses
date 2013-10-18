@@ -24,7 +24,7 @@ public class ComprovantesItauPersonnaliteParser implements TransactionParser {
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+mapa.+site");
 	
 	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?e-mail)(.+)(Ita.+)", Pattern.DOTALL);
-	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2}/\\d{4})\\t(.+?)\t(.+?)\t((\\d{1,3}\\.?)+,(\\d{2}))\\s+?(.*?)$", Pattern.MULTILINE);
+	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2}/\\d{4})\\t(.+?)\\t(.+?)\\t((\\d{1,3}\\.?)+,(\\d{2}))\\s+?(.*?)$", Pattern.MULTILINE);
 	private static Pattern DISPOSABLE_TRANSACTION_TEXT = Pattern.compile("(\t+visualizar(\t+.*)?$)", Pattern.MULTILINE);
 	
 	private static final Set<Pattern> CREDIT_TRANSACTIONS_PATTERNS = new HashSet<Pattern>();
