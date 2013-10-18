@@ -6,13 +6,13 @@ import java.util.List;
 
 import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
-import br.com.expense.parser.CartaoPersonnaliteParser;
-import br.com.expense.parser.ComprovantesItauPersonnaliteParser;
-import br.com.expense.parser.ComprovantesItauPessoaJuridicaParser;
-import br.com.expense.parser.ContaCorrenteItauPersonnaliteParser;
-import br.com.expense.parser.ContaCorrenteItauPjParser;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
+import br.com.expense.parser.itau.pf.CartaoPersonnaliteParser;
+import br.com.expense.parser.itau.pf.ComprovantesItauPersonnaliteParser;
+import br.com.expense.parser.itau.pf.ContaCorrenteItauPersonnaliteParser;
+import br.com.expense.parser.itau.pj.ComprovantesItauPessoaJuridicaParser;
+import br.com.expense.parser.itau.pj.ContaCorrenteItauPjParser;
 import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.report.AnaliticExcelReport;

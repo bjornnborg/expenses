@@ -10,9 +10,9 @@ import org.junit.Test;
 
 import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
-import br.com.expense.parser.CartaoPersonnaliteParser;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
+import br.com.expense.parser.itau.pf.CartaoPersonnaliteParser;
 import br.com.expense.parser.rules.CategoryRulesEngine;
 import br.com.expense.parser.rules.CategoryRulesParser;
 import br.com.expense.service.DateTimeServiceImpl;

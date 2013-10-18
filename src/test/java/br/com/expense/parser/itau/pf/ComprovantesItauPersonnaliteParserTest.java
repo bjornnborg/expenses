@@ -1,4 +1,4 @@
-package br.com.expense.parser;
+package br.com.expense.parser.itau.pf;
 
 import static br.com.expense.model.TransactionType.CREDIT;
 import static org.junit.Assert.assertEquals;
@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.expense.model.Transaction;
+import br.com.expense.parser.BaseParserTest;
 
 public class ComprovantesItauPersonnaliteParserTest extends BaseParserTest {
 	

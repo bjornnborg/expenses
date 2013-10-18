@@ -1,4 +1,4 @@
-package br.com.expense.parser;
+package br.com.expense.parser.itau.pf;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.Test;
 
 import br.com.expense.model.Transaction;
+import br.com.expense.parser.BaseParserTest;
 import br.com.expense.service.DateTimeServiceImpl;
 
 public class ContaCorrenteItauPersonnaliteParserTest extends BaseParserTest {

@@ -1,4 +1,4 @@
-package br.com.expense.parser;
+package br.com.expense.parser.itau.pj;
 
 
 import static br.com.expense.model.Currency.REAL;
@@ -16,17 +16,17 @@ import java.util.regex.Pattern;
 
 import br.com.expense.model.CurrencyInfo;
 import br.com.expense.model.Transaction;
+import br.com.expense.parser.TransactionParser;
 import br.com.expense.service.DateTimeService;
 import br.com.expense.util.DateTimeUtil;
 
-public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
+public class ContaCorrenteItauPjParser implements TransactionParser {
 	
-	private static Pattern HEADER = Pattern.compile("Ag.ncia:.+Conta:");
-	private static Pattern PERSONNALITE_LINE = Pattern.compile("^Ita.+Personnalite", Pattern.MULTILINE);
-	private static Pattern CHECKING_ACCOUNT_LINE = Pattern.compile("^Saldo de Conta Corrente", Pattern.MULTILINE);
+	private static Pattern HEADER = Pattern.compile("^Home\\s»\\sContas\\s»\\sExtrato\\s»");
+	private static Pattern STATEMENT_LINE = Pattern.compile("^Extrato\\sde\\sconta\\scorrente", Pattern.MULTILINE);
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+site^");
 	
-	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(Aviso.*)", Pattern.DOTALL);
+	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?)(Data.+)(Os\\sSaldos.*)", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 	private static Pattern SCHEDULED_TRANSACTIONS_SNIPPET = Pattern.compile("(Lan.amentos.+futuros.+)", Pattern.DOTALL | Pattern.CASE_INSENSITIVE);
 	
 	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2})\\s+(D\\s|C\\s)?(.+?\\s+)((\\d{1,3}\\.?)+,(\\d{2}))(.*)", Pattern.MULTILINE);
@@ -41,7 +41,7 @@ public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 	
 	private DateTimeService dateTimeService;
 
-	public ContaCorrenteItauPersonnaliteParser(DateTimeService dateTimeService) {
+	public ContaCorrenteItauPjParser(DateTimeService dateTimeService) {
 		this.dateTimeService = dateTimeService;
 	}
 
@@ -92,7 +92,7 @@ public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 	
 	@Override
 	public boolean accept(String text) {
-		return hasHeader(text) && isPersonnaliteAccount(text) && isCheckingAccount(text) && hasFooter(text);
+		return hasHeader(text) && hasStatementLine(text) && hasFooter(text);
 	}
 	
 	private String getTransactionsSnippet(String text) {
@@ -121,17 +121,13 @@ public class ContaCorrenteItauPersonnaliteParser implements TransactionParser {
 		return FOOTER.matcher(text).find();
 	}
 	
-	private boolean isCheckingAccount(String text) {
-		return CHECKING_ACCOUNT_LINE.matcher(text).find();
+	private boolean hasStatementLine(String text) {
+		return STATEMENT_LINE.matcher(text).find();
 	}
 	
-	private boolean isPersonnaliteAccount(String text) {
-		return PERSONNALITE_LINE.matcher(text).find();
-	}
-
 	@Override
 	public String getName() {
-		return "Itaú Personnalite accounts parser";
+		return "Itaú PJ accounts parser";
 	}
 	
 }

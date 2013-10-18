@@ -1,4 +1,4 @@
-package br.com.expense.parser;
+package br.com.expense.parser.itau.pf;
 
 import static br.com.expense.model.TransactionType.CREDIT;
 import static br.com.expense.model.TransactionType.DEBIT;
@@ -15,16 +15,17 @@ import br.com.expense.model.Currency;
 import br.com.expense.model.CurrencyInfo;
 import br.com.expense.model.Transaction;
 import br.com.expense.model.TransactionType;
+import br.com.expense.parser.TransactionParser;
 import br.com.expense.util.DateTimeUtil;
 
-public class ComprovantesItauPessoaJuridicaParser implements TransactionParser {
+public class ComprovantesItauPersonnaliteParser implements TransactionParser {
 	
-	private static Pattern HEADER = Pattern.compile("Home.+».+Comprovantes");
-	private static Pattern KEY_LINE = Pattern.compile("^Emiss.o.+comprovantes$", Pattern.MULTILINE);
+	private static Pattern HEADER = Pattern.compile("Home.+>.+Comprovantes");
+	private static Pattern KEY_LINE = Pattern.compile("^Comprovantes$", Pattern.MULTILINE);
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+mapa.+site");
 	
 	private static Pattern TRANSACTIONS_SNIPPET = Pattern.compile("(.+?e-mail)(.+)(Ita.+)", Pattern.DOTALL);
-	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2}/\\d{4})\\t(.+?)\\t(.+?)\\t.+?((\\d{1,3}\\.?)+,(\\d{2}))\\s+?(.*?)$", Pattern.MULTILINE);
+	private static Pattern TRANSACTION_RECORD = Pattern.compile("(\\d{2}/\\d{2}/\\d{4})\\t(.+?)\\t(.+?)\\t((\\d{1,3}\\.?)+,(\\d{2}))\\s+?(.*?)$", Pattern.MULTILINE);
 	private static Pattern DISPOSABLE_TRANSACTION_TEXT = Pattern.compile("(\t+visualizar(\t+.*)?$)", Pattern.MULTILINE);
 	
 	private static final Set<Pattern> CREDIT_TRANSACTIONS_PATTERNS = new HashSet<Pattern>();

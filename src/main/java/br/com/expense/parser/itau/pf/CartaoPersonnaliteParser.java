@@ -1,4 +1,4 @@
-package br.com.expense.parser;
+package br.com.expense.parser.itau.pf;
 
 import static br.com.expense.model.Currency.DOLLAR;
 import static br.com.expense.model.Currency.REAL;
@@ -17,6 +17,7 @@ import br.com.expense.model.Currency;
 import br.com.expense.model.CurrencyInfo;
 import br.com.expense.model.Transaction;
 import br.com.expense.model.TransactionType;
+import br.com.expense.parser.TransactionParser;
 import br.com.expense.service.DateTimeService;
 import br.com.expense.util.DateTimeUtil;
 
