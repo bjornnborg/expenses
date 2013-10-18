@@ -1,35 +1,25 @@
- Agência: 2965Conta: 06141-5ONEIL SOFTWARE DO BRASIL LTDA Acessar outras contas 
-Home | Conta Corrente | Cobrança | Pagamentos | Recebíveis | Transferência, DOC e TED | Crédito | Investimentos
+Home » Contas » Comprovantes » Consultar
 
-Negócios Internacionais | Derivativos | Cartões | Outros Serviços | O que vai mudar | Copa 
-Home > Outros Serviços > Meu Itaú > Comprovantes
-Comprovantes
-Comprovantes dos últimos 24 meses
-Filtrar por:
-Período:	
-Outro período de:	 /  /    até  /  /   
-Origem/canal:	
-Tipo de Operação:		
+Emissão de comprovantes
+Responsabilidade Ambiental	Responsabilidade Ambiental
+Ao optar por não imprimir o(s) comprovantes(s), você ajuda a construir um mundo mais sustentável.
+Para o Itaú, usar os recursos naturais de forma consciente é investir no futuro.
+Resultado da busca:
+Modalidade:	Todas	Tipo do pagamento:	
+Período desta consulta:	de 01/10/2011 a 10/10/2013
+Se desejar, selecione os pagamentos para emitir os comprovantes em lote.
+ selecionar todos pagamentos desta página	
+Páginas: 1 2 3 4 5 6 7 8 9 10
+ 	Data	Modalidade	Tipo de pagamento	Origem/Canal	Valor (R$)	Identificação	Comprovante
+Consulta 	Envio de e-mail 
+	07/10/2013	Transferências	Transferência C/C-C/C	Internet 	 99.999,99 	Contas	visualizar	enviar
+	07/10/2013	Boletos	Título/Boleto de outros bancos	Internet 	 999,99 	Contador	visualizar	enviar
+	07/10/2013	Tributos	DAS - Documento de Arrecadação do Simples Nacional	Internet 	 999,99 	DAS	visualizar	 
+	10/07/2013		Demais tributos/outras prefeituras	Internet 	 999,99 	TFE 2013	visualizar	 
+O comprovante não está disponível para consulta / envio.
+Páginas: 1 2 3 4 5 6 7 8 9 10
+Itaú Unibanco S.A.     |     Segurança     |     Mapa do site
 
 
-Ir para
-Solicitar comprovantes anteriores aos últimos 24 meses
-Consulta aos comprovantes solicitados
-Relação de comprovantes
 
-
-Comprovantes de 05/01/2013 a 04/02/2013	
-Data	Tipo de operação	Origem/canal	Valor (R$)	Identificação	Comprovante
-Consulta	
-Envio de
-e-mail 
-31/01/2013	Título/Boleto de outros bancos	Internet	83,00 	Contrib Sindical	visualizar	enviar
-14/01/2013	DAS - Documento de Arrecadação do Simples Nacional	Internet	999,98 	DAS jan/13	visualizar	
-14/01/2013	Transferência C/C-C/C	Internet	6.200,00 	Cartao + economias	visualizar	enviar
-10/01/2013	Transferência C/C-C/C	Internet	1.100,00 	Aluguel Gustavo	visualizar	enviar
-10/01/2013	Transferência C/C-C/C	Internet	1.500,00 	Aluguel	visualizar	enviar
-10/01/2013	Título/Boleto de outros bancos	Internet	275,00 	Contador	visualizar	enviar
-08/01/2013	Transferência C/C-C/C	Internet	1.000,00 	Contas	visualizar	enviar
-O comprovante não está disponível para consulta / envio.	
-
-Itaú Unibanco S.A.     |     Atendimento     |     Segurança     |     Mapa do site
+Central de Relacionamento
