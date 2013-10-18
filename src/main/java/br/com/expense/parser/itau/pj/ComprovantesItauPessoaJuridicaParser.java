@@ -20,7 +20,7 @@ import br.com.expense.util.DateTimeUtil;
 
 public class ComprovantesItauPessoaJuridicaParser implements TransactionParser {
 	
-	private static Pattern HEADER = Pattern.compile("Home.+».+Comprovantes");
+	private static Pattern HEADER = Pattern.compile("Home\\s.+\\sContas\\s.+\\sComprovantes\\s.+\\sConsultar");
 	private static Pattern KEY_LINE = Pattern.compile("^Emiss.o.+comprovantes$", Pattern.MULTILINE);
 	private static Pattern FOOTER =  Pattern.compile("Ita.\\sUnibanco.+|.+mapa.+site");
 	
