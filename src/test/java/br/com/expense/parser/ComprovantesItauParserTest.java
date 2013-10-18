@@ -18,7 +18,7 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void shouldAcceptIfMatches() throws FileNotFoundException, URISyntaxException {
-		assertTrue(new ComprovantesItauParser().accept(this.loadFile("itau-comprovantes-pf.txt")));
+		assertTrue(new ComprovantesItauParser().accept(this.loadFile("itau-comprovantes-personnalite.txt")));
 	}
 	
 	@Test
@@ -28,10 +28,10 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void parseTransactions() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-personnalite.txt"));
 		assertNotNull(transactions);
 		assertFalse(transactions.isEmpty());
-		assertEquals(8, transactions.size());
+		assertEquals(7, transactions.size());
 	}
 	
 	@Test
@@ -44,18 +44,17 @@ public class ComprovantesItauParserTest extends BaseParserTest {
 	
 	@Test
 	public void mustUseTransactionTypeAsDescriptionWhenDescriptionIsNull() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-personnalite.txt"));
 		assertNotNull(transactions);
-		assertEquals("Detran SP - DPVAT", transactions.get(4).getDescription());
 		assertEquals("Detran SP - IPVA", transactions.get(5).getDescription());
 	}
 	
 	@Test
 	public void mustIdentifyCreditTransactionsCorrectly() throws FileNotFoundException {
-		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-pf.txt"));
+		List<Transaction> transactions = new ComprovantesItauParser().parse(this.loadFile("itau-comprovantes-personnalite.txt"));
 		assertNotNull(transactions);
-		assertEquals("CEI 000030 DINHEIRO", transactions.get(0).getDescription());
-		assertEquals(CREDIT, transactions.get(0).getType());
+		assertEquals("CEI 000043 DINHEIRO", transactions.get(4).getDescription());
+		assertEquals(CREDIT, transactions.get(4).getType());
 	}
 	
 }
