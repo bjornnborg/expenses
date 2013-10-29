@@ -8,6 +8,7 @@ import br.com.expense.config.Configuration;
 import br.com.expense.model.Transaction;
 import br.com.expense.parser.TransactionParser;
 import br.com.expense.parser.TransactionParserEngine;
+import br.com.expense.parser.hsbc.pf.ContaCorrenteHSBCParser;
 import br.com.expense.parser.itau.pf.CartaoPersonnaliteParser;
 import br.com.expense.parser.itau.pf.ComprovantesItauPersonnaliteParser;
 import br.com.expense.parser.itau.pf.ContaCorrenteItauPersonnaliteParser;
@@ -38,6 +39,7 @@ public class TransactionBusinessImpl implements TransactionBusiness {
 		parsers.add(new ComprovantesItauPessoaJuridicaParser());
 		parsers.add(new ContaCorrenteItauPjParser(new DateTimeServiceImpl()));
 		parsers.add(new ContaCorrenteItauPersonnaliteParser(new DateTimeServiceImpl()));
+		parsers.add(new ContaCorrenteHSBCParser(new DateTimeServiceImpl()));
 		System.out.println(">> Utilizando parsers: ");
 		for (TransactionParser transactionParser : parsers) {
 			System.out.println("  >> " + transactionParser.getName());
