@@ -56,6 +56,8 @@ public class FileUtil {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
+			} else {
+				e.printStackTrace();
 			}
 		}		
 	}
